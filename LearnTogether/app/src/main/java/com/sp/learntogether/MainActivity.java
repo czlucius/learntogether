@@ -2,6 +2,8 @@ package com.sp.learntogether;
 
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.view.View;
+
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import androidx.annotation.NonNull;
@@ -19,6 +21,8 @@ import com.sp.learntogether.ui.profile.ProfileFragment;
 
 import com.google.android.material.navigation.NavigationBarView;
 import com.sp.learntogether.databinding.ActivityMainBinding;
+
+import java.util.Objects;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -58,6 +62,17 @@ public class MainActivity extends AppCompatActivity {
 
         fragmentManager = getSupportFragmentManager();
 
+
+        navController.addOnDestinationChangedListener((navController1, navDestination, bundle) -> {
+            int id = navDestination.getId();
+            if (id == R.id.loginFragment) {
+                Objects.requireNonNull(getSupportActionBar()).hide();
+                binding.navView.setVisibility(View.GONE);
+            } else {
+                Objects.requireNonNull(getSupportActionBar()).show();
+                binding.navView.setVisibility(View.VISIBLE);
+            }
+        });
 
     }
 
