@@ -1,4 +1,4 @@
-package com.sp.learntogether.ui.home;
+package com.sp.learntogether.ui.tutorial;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -10,22 +10,22 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
-import com.sp.learntogether.databinding.FragmentHomeBinding;
+import com.sp.learntogether.databinding.FragmentTutorialBinding;
 
-public class HomeFragment extends Fragment {
+public class TutorialFragment extends Fragment {
 
-    private FragmentHomeBinding binding;
+    private FragmentTutorialBinding binding;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        HomeViewModel homeViewModel =
-                new ViewModelProvider(this).get(HomeViewModel.class);
+        TutorialViewModel viewModel =
+                new ViewModelProvider(this).get(TutorialViewModel.class);
 
-        binding = FragmentHomeBinding.inflate(inflater, container, false);
+        binding = FragmentTutorialBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
 
         final TextView textView = binding.textHome;
-        homeViewModel.getText().observe(getViewLifecycleOwner(), textView::setText);
+        viewModel.getText().observe(getViewLifecycleOwner(), textView::setText);
         return root;
     }
 

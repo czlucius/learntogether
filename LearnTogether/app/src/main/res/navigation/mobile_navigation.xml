@@ -6,29 +6,36 @@
     app:startDestination="@id/loginFragment">
 
     <fragment
-        android:id="@+id/navigation_home"
-        android:name="com.sp.learntogether.ui.home.HomeFragment"
-        android:label="@string/title_home"
-        tools:layout="@layout/fragment_home" />
+        android:id="@+id/tutorial_fragment"
+        android:name="com.sp.learntogether.ui.tutorial.TutorialFragment"
+        android:label="@string/title_tutorials"
+        tools:layout="@layout/fragment_tutorial" />
 
     <fragment
-        android:id="@+id/navigation_dashboard"
-        android:name="com.sp.learntogether.ui.dashboard.DashboardFragment"
-        android:label="@string/title_dashboard"
-        tools:layout="@layout/fragment_dashboard" />
+        android:id="@+id/planner_fragment"
+        android:name="com.sp.learntogether.ui.planner.PlannerFragment"
+        android:label="@string/title_planner"
+        tools:layout="@layout/fragment_planner" />
 
     <fragment
-        android:id="@+id/navigation_notifications"
-        android:name="com.sp.learntogether.ui.notifications.NotificationsFragment"
-        android:label="@string/title_notifications"
-        tools:layout="@layout/fragment_notifications" />
+        android:id="@+id/communities_fragment"
+        android:name="com.sp.learntogether.ui.communities.CommunitiesFragment"
+        android:label="@string/title_communities"
+        tools:layout="@layout/fragment_communities" />
     <fragment
         android:id="@+id/loginFragment"
         android:name="com.sp.learntogether.LoginFragment"
-        android:label="fragment_login"
+        android:label="@string/login"
         tools:layout="@layout/fragment_login" >
         <action
             android:id="@+id/action_loginFragment_to_navigation_home"
-            app:destination="@id/navigation_home" />
+            app:destination="@id/tutorial_fragment" />
     </fragment>
+
+    <fragment
+        android:id="@+id/profile_fragment"
+        android:name="com.sp.learntogether.ui.profile.ProfileFragment"
+        android:label="@string/title_profile"
+        tools:layout="@layout/fragment_profile"/>
+
 </navigation>
