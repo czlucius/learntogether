@@ -28,4 +28,10 @@
         <item name="colorSurfaceInverse">@color/md_theme_light_inverseSurface</item>
         <item name="colorPrimaryInverse">@color/md_theme_light_inversePrimary</item>
     </style>
+
+    <style name="Theme.LearnTogether.TitleText" parent="TextAppearance.Material3.HeadlineMedium">
+        <item name="android:fontWeight">700</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textColor">?colorPrimary</item>
+    </style>
 </resources>
