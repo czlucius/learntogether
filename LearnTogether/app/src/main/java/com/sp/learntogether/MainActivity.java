@@ -8,6 +8,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
+import androidx.navigation.ui.AppBarConfigurationKt;
 import androidx.navigation.ui.NavigationUI;
 
 import com.sp.learntogether.databinding.ActivityMainBinding;
@@ -15,6 +16,7 @@ import com.sp.learntogether.databinding.ActivityMainBinding;
 public class MainActivity extends AppCompatActivity {
 
     private ActivityMainBinding binding;
+    private AppBarConfiguration appBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,8 +32,18 @@ public class MainActivity extends AppCompatActivity {
                 R.id.navigation_home, R.id.navigation_dashboard, R.id.navigation_notifications)
                 .build();
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_activity_main);
-        NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
+        appBar = new AppBarConfiguration.Builder(
+                R.id.navigation_dashboard,
+                R.id.navigation_home,
+                R.id.navigation_notifications
+        )
+                .setOpenableLayout(binding.drawerLayout)
+                .build();
+        NavigationUI.setupActionBarWithNavController(this, navController, appBar);
+        NavigationUI.setupWithNavController(binding.navDrawer, navController);
         NavigationUI.setupWithNavController(binding.navView, navController);
+
+
     }
 
 }

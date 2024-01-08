@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view"
+    >
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/ai"
+            android:icon="@drawable/ai"
+            android:title="Ask LearnBot!" />
+        <item
+            android:id="@+id/library"
+            android:icon="@drawable/ion_librarysharp"
+            android:title="Your Library" />
+        <item
+            android:id="@+id/meetups"
+            android:icon="@drawable/grommeticons_group"
+            android:title="Study Meetups" />
+        <item
+            android:id="@+id/about"
+            android:icon="@drawable/about"
+            android:title="About the app" />
+    </group>
+</menu>
