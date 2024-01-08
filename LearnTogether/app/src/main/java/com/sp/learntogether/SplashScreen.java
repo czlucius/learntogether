@@ -15,7 +15,7 @@ public class SplashScreen extends AppCompatActivity {
         new Handler().postDelayed(new Runnable(){
             @Override
             public void run(){
-                Intent intent = new Intent(SplashScreen.this,  testing.class); //Should be replaced with navdrawer OR main activity
+                Intent intent = new Intent(SplashScreen.this,  MainActivity.class); //Should be replaced with navdrawer OR main activity
                 startActivity(intent);
                 finish();
             }
