@@ -11,6 +11,7 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.sp.learntogether.databinding.FragmentCommunitiesBinding;
+import android.widget.GridView;
 
 public class CommunitiesFragment extends Fragment {
 
@@ -24,8 +25,8 @@ public class CommunitiesFragment extends Fragment {
         binding = FragmentCommunitiesBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
 
-        final TextView textView = binding.textNotifications;
-        communitiesViewModel.getText().observe(getViewLifecycleOwner(), textView::setText);
+        //final TextView textView = binding.textNotifications;
+        //communitiesViewModel.getText().observe(getViewLifecycleOwner(), textView::setText);
         return root;
     }
 

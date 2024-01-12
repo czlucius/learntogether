@@ -41,6 +41,7 @@ public class MainActivity extends AppCompatActivity {
                 R.id.planner_fragment,
                 R.id.tutorial_fragment,
                 R.id.communities_fragment,
+                R.id.profile_fragment,
                 R.id.loginFragment
         )
                 .setOpenableLayout(binding.drawerLayout)
