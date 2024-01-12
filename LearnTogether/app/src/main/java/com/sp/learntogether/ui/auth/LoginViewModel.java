@@ -1,13 +1,11 @@
-package com.sp.learntogether.ui;
+package com.sp.learntogether.ui.auth;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
-import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.sp.learntogether.R;
 
 
 enum LoginState {
