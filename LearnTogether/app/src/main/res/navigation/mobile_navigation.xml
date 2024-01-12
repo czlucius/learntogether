@@ -24,7 +24,7 @@
         tools:layout="@layout/fragment_communities" />
     <fragment
         android:id="@+id/loginFragment"
-        android:name="com.sp.learntogether.LoginFragment"
+        android:name="com.sp.learntogether.ui.LoginFragment"
         android:label="@string/login"
         tools:layout="@layout/fragment_login" >
         <action
