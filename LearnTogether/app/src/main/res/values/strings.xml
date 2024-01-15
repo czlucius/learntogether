@@ -22,4 +22,13 @@
     <string name="email_password_cannot_be_empty">Email/password cannot be empty!</string>
     <string name="network_error">Network error!</string>
     <string name="auth_failure">Authentication failed</string>
+    <string name="name">Name</string>
+    <string name="username_hint">Username (e.g. @johndoe)</string>
+    <string name="signup_for_learntogether_today">Signup for LearnTogether today!</string>
+    <string name="sign_up">Sign Up</string>
+    <string name="confirm_password">Confirm Password</string>
+    <string name="remove_profile_picture">Remove profile picture?</string>
+    <string name="clear_pfp_notice">This will clear the profile picture you have set.</string>
+    <string name="confirm">Confirm</string>
+    <string name="cancel">Cancel</string>
 </resources>
