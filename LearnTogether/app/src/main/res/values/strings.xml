@@ -16,4 +16,10 @@
     <string name="title_planner">Planner</string>
     <string name="title_communities">Communities</string>
     <string name="title_profile">Profile</string>
+    <string name="email_not_verified">Email not verified!</string>
+    <string name="verify">Verify</string>
+    <string name="verification_email_sent">Verification email sent</string>
+    <string name="email_password_cannot_be_empty">Email/password cannot be empty!</string>
+    <string name="network_error">Network error!</string>
+    <string name="auth_failure">Authentication failed</string>
 </resources>
