@@ -1,5 +1,6 @@
 package com.sp.learntogether.ui.auth;
 
+import android.graphics.Color;
 import android.os.Bundle;
 
 import androidx.activity.result.ActivityResultLauncher;
@@ -15,6 +16,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
+import com.google.android.material.snackbar.Snackbar;
 import com.sp.learntogether.R;
 import com.sp.learntogether.databinding.FragmentRegisterBinding;
 
@@ -23,7 +25,7 @@ public class RegisterFragment extends Fragment {
     private FragmentRegisterBinding binding;
     private RegisterViewModel vm;
 
-    private ActivityResultLauncher<PickVisualMediaRequest> pickMediaLauncher = registerForActivityResult(new ActivityResultContracts.PickVisualMedia(), uri -> {
+    private final ActivityResultLauncher<PickVisualMediaRequest> pickMediaLauncher = registerForActivityResult(new ActivityResultContracts.PickVisualMedia(), uri -> {
         if (uri == null) return;
         vm.setImageUri(uri);
     });
@@ -45,7 +47,22 @@ public class RegisterFragment extends Fragment {
                 binding.profilePicRegister.setImageResource(R.drawable.baseline_add_24);
             } else {
                 binding.profilePicRegister.setImageURI(uri);
-                // TODO face detection
+            }
+        });
+
+        vm.getDetectedFaces().observe(getViewLifecycleOwner(), faces -> {
+            if (faces == null ) {
+                binding.hasFaceIndicator.setVisibility(View.GONE);
+                return;
+            }
+            binding.hasFaceIndicator.setVisibility(View.VISIBLE);
+            if (faces.isEmpty()) {
+                binding.hasFaceIndicator.setText(R.string.no_face);
+                binding.hasFaceIndicator.setBackgroundColor(getResources().getColor(R.color.md_theme_light_errorContainer, requireContext().getTheme()));
+                Snackbar.make(view, R.string.add_face_notice, Snackbar.LENGTH_LONG).show();
+            } else {
+                binding.hasFaceIndicator.setBackgroundColor(getResources().getColor(R.color.success_green_background, requireContext().getTheme()));
+                binding.hasFaceIndicator.setText(R.string.face_detected);
             }
         });
 
