@@ -1,2 +1,4 @@
 node_modules/
 .idea/
+.env
+learntogether-firebase.json
