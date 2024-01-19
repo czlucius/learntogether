@@ -45,6 +45,7 @@ import androidx.lifecycle.ViewModelProvider;
 import com.sp.learntogether.R;
 import com.sp.learntogether.databinding.FragmentCommunitiesBinding;
 import android.widget.GridView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 
@@ -70,10 +71,20 @@ public class CommunitiesFragment extends Fragment {
 //        communitiesModelArrayList.add(new Communities("Science", R.drawable.science));
         adapter = new communitiesGVadapter(getContext(), communitiesModelArrayList);
         communityGV.setAdapter(adapter);
+        communityGV.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                String comType = adapter.getItem(position).getCommunity_type();
+                //Toast.makeText(getContext(), "You clicked: "+type, Toast.LENGTH_LONG).show();
+
+            }
+        });
         getAllVolley();
 
         return root;
     }
+
+
 
     @Override
     public void onDestroyView() {
@@ -93,7 +104,7 @@ public class CommunitiesFragment extends Fragment {
                         if (count > 0) {
                             JSONArray data = response.getJSONArray("data");
                             for (int i = 0; i <= count; i++) {
-                                Communities community = new Communities(data.getJSONObject(i).getString(""));
+                                Communities community = new Communities(data.getJSONObject(i).getString("community"));
                                 adapter.add(community);
                             }
                         }
