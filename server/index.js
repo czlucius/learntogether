@@ -6,7 +6,7 @@ const OpenAI = require("openai")
 const bodyParser = require("body-parser");
 
 const app = express()
-const serviceAccount = require("./learntogether-firebase.json")
+const serviceAccount = require("./service/learntogether-firebase.json")
 const firebaseApp = firebaseAdmin.initializeApp({
     credential: firebaseAdmin.credential.cert(serviceAccount)
 })
