@@ -21,7 +21,11 @@
         android:id="@+id/communities_fragment"
         android:name="com.sp.learntogether.ui.communities.CommunitiesFragment"
         android:label="@string/title_communities"
-        tools:layout="@layout/fragment_communities" />
+        tools:layout="@layout/fragment_communities" >
+        <action
+            android:id="@+id/action_communities_fragment_to_groupChats2"
+            app:destination="@id/groupChats" />
+    </fragment>
     <fragment
         android:id="@+id/loginFragment"
         android:name="com.sp.learntogether.ui.LoginFragment"
@@ -37,5 +41,14 @@
         android:name="com.sp.learntogether.ui.profile.ProfileFragment"
         android:label="@string/title_profile"
         tools:layout="@layout/fragment_profile"/>
+    <fragment
+        android:id="@+id/groupChats"
+        android:name="com.sp.learntogether.ui.communities.groupChats"
+        android:label="fragment_group_chats"
+        tools:layout="@layout/fragment_group_chats" >
+        <argument
+            android:name="communityDestination"
+            app:argType="string" />
+    </fragment>
 
 </navigation>

@@ -41,6 +41,7 @@ import java.util.Map;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.navigation.Navigation;
 
 import com.sp.learntogether.R;
 import com.sp.learntogether.databinding.FragmentCommunitiesBinding;
@@ -66,9 +67,6 @@ public class CommunitiesFragment extends Fragment {
 
         communityGV = binding.Communities;
         ArrayList<Communities> communitiesModelArrayList = new ArrayList<Communities>();
-//        communitiesModelArrayList.add(new Communities("Mathematics", R.drawable.math));
-//        communitiesModelArrayList.add(new Communities("English", R.drawable.english));
-//        communitiesModelArrayList.add(new Communities("Science", R.drawable.science));
         adapter = new communitiesGVadapter(getContext(), communitiesModelArrayList);
         communityGV.setAdapter(adapter);
         communityGV.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -76,7 +74,9 @@ public class CommunitiesFragment extends Fragment {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 String comType = adapter.getItem(position).getCommunity_type();
                 //Toast.makeText(getContext(), "You clicked: "+type, Toast.LENGTH_LONG).show();
-
+                Bundle bundle = new Bundle();
+                bundle.putString("comType", comType);
+                Navigation.findNavController(view).navigate(R.id.groupChats, bundle);
             }
         });
         getAllVolley();
