@@ -51,8 +51,8 @@
     </fragment>
     <fragment
         android:id="@+id/libraryFragment"
-        android:name="com.sp.learntogether.LibraryFragment"
-        android:label="fragment_library"
+        android:name="com.sp.learntogether.ui.library.LibraryFragment"
+        android:label="@string/library"
         tools:layout="@layout/fragment_library" />
 
 </navigation>

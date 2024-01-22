@@ -22,4 +22,5 @@
     <string name="email_password_cannot_be_empty">Email/password cannot be empty!</string>
     <string name="network_error">Network error!</string>
     <string name="auth_failure">Authentication failed</string>
+    <string name="library">Library</string>
 </resources>
