@@ -34,4 +34,11 @@
     <string name="face_detected">Your picture has a face!</string>
     <string name="no_face">No face!</string>
     <string name="add_face_notice">We encourage you to add a picture with your face for better personal interaction</string>
+    <string name="question_box_hint">Type/paste your questions here...</string>
+    <string name="ask_learnbot">Ask LearnBot</string>
+    <string name="profile_picture">Profile picture</string>
+    <string name="learnbot">LearnBot</string>
+    <string name="you">You</string>
+    <string name="parsing_errors">Parsing errors</string>
+    <string name="chat_with_learnbot">Chat with LearnBot</string>
 </resources>

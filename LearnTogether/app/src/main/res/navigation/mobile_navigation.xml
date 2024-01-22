@@ -49,5 +49,10 @@
             android:id="@+id/action_registerFragment_to_loginFragment"
             app:destination="@id/loginFragment" />
     </fragment>
+    <fragment
+        android:id="@+id/generativeChatFragment"
+        android:name="com.sp.learntogether.ui.ai.GenerativeChatFragment"
+        android:label="@string/chat_with_learnbot"
+        tools:layout="@layout/fragment_generative_chat" />
 
 </navigation>

@@ -45,7 +45,7 @@ public class MainActivity extends AppCompatActivity {
                 R.id.planner_fragment,
                 R.id.tutorial_fragment,
                 R.id.communities_fragment,
-                R.id.loginFragment
+                R.id.profile_fragment
         )
                 .setOpenableLayout(binding.drawerLayout)
                 .build();
@@ -56,6 +56,14 @@ public class MainActivity extends AppCompatActivity {
         NavigationUI.setupWithNavController(binding.navView, navController);
         binding.navView.setOnItemReselectedListener(v -> {});
 
+        binding.navDrawer.setNavigationItemSelectedListener(item -> {
+            if (item.getItemId() == R.id.ai) {
+                navController.navigate(R.id.generativeChatFragment);
+                return true;
+            }
+            return false;
+        });
+
 
         botNavView = binding.navView;
 
@@ -65,7 +73,7 @@ public class MainActivity extends AppCompatActivity {
 
         navController.addOnDestinationChangedListener((navController1, navDestination, bundle) -> {
             int id = navDestination.getId();
-            if (id == R.id.loginFragment) {
+            if (id == R.id.loginFragment || id == R.id.registerFragment) {
                 Objects.requireNonNull(getSupportActionBar()).hide();
                 binding.navView.setVisibility(View.GONE);
             } else {
