@@ -25,4 +25,5 @@
     <string name="library">Library</string>
     <string name="isbn">ISBN</string>
     <string name="share">Share</string>
+    <string name="scan_book_isbn_code">Scan book ISBN code</string>
 </resources>
