@@ -49,5 +49,10 @@
             android:id="@+id/action_registerFragment_to_loginFragment"
             app:destination="@id/loginFragment" />
     </fragment>
+    <fragment
+        android:id="@+id/libraryFragment"
+        android:name="com.sp.learntogether.LibraryFragment"
+        android:label="fragment_library"
+        tools:layout="@layout/fragment_library" />
 
 </navigation>
