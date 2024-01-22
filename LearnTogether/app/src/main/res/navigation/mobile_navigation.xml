@@ -53,6 +53,15 @@
         android:id="@+id/libraryFragment"
         android:name="com.sp.learntogether.ui.library.LibraryFragment"
         android:label="@string/library"
-        tools:layout="@layout/fragment_library" />
+        tools:layout="@layout/fragment_library" >
+        <action
+            android:id="@+id/action_libraryFragment_to_scanBookFragment"
+            app:destination="@id/scanBookFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/scanBookFragment"
+        android:name="com.sp.learntogether.ScanBookFragment"
+        android:label="fragment_scan_book"
+        tools:layout="@layout/fragment_scan_book" />
 
 </navigation>

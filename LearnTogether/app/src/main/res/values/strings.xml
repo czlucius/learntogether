@@ -26,4 +26,7 @@
     <string name="isbn">ISBN</string>
     <string name="share">Share</string>
     <string name="scan_book_isbn_code">Scan book ISBN code</string>
+    <string name="scan_your_books_here">Scan your books here.</string>
+    <string name="isbn_search_desc">LearnTogether will search up the book via an ISBN lookup.</string>
+    <string name="enter_isbn">Enter ISBN</string>
 </resources>
