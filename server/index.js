@@ -65,7 +65,7 @@ app.post("/gpt", bodyParser.json(), async (req, res) => {
 
     console.log(choices)
     let message = ''
-    let update = []
+    let update = history
     for (const choice of choices) {
         if (choice.message.role === "assistant") {
             message += choice.message.content
