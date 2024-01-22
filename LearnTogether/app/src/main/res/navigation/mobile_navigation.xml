@@ -25,6 +25,9 @@
         <action
             android:id="@+id/action_communities_fragment_to_groupChats2"
             app:destination="@id/groupChats" />
+        <action
+            android:id="@+id/action_communities_fragment_to_addGCFragment"
+            app:destination="@id/addGCFragment" />
     </fragment>
     <fragment
         android:id="@+id/loginFragment"
@@ -44,11 +47,21 @@
     <fragment
         android:id="@+id/groupChats"
         android:name="com.sp.learntogether.ui.communities.groupChats"
-        android:label="fragment_group_chats"
+        android:label="Communities"
         tools:layout="@layout/fragment_group_chats" >
         <argument
             android:name="communityDestination"
             app:argType="string" />
     </fragment>
+    <fragment
+        android:id="@+id/aboutFragment"
+        android:name="com.sp.learntogether.aboutFragment"
+        android:label="About the app"
+        tools:layout="@layout/fragment_about" />
+    <fragment
+        android:id="@+id/addGCFragment"
+        android:name="com.sp.learntogether.addGCFragment"
+        android:label="Create Your Groupchat!"
+        tools:layout="@layout/fragment_add_g_c" />
 
 </navigation>

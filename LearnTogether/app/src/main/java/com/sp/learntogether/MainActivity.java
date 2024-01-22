@@ -57,6 +57,18 @@ public class MainActivity extends AppCompatActivity {
         NavigationUI.setupWithNavController(binding.navView, navController);
         binding.navView.setOnItemReselectedListener(v -> {});
 
+        binding.navDrawer.setNavigationItemSelectedListener(item ->{
+            if(item.getItemId()==R.id.ai){
+
+            } else if(item.getItemId()==R.id.about){
+                navController.navigate(R.id.aboutFragment);
+                binding.drawerLayout.closeDrawers();
+                return true;
+            }
+
+
+            return false;
+        });
 
         botNavView = binding.navView;
 
@@ -68,6 +80,9 @@ public class MainActivity extends AppCompatActivity {
             int id = navDestination.getId();
             if (id == R.id.loginFragment) {
                 Objects.requireNonNull(getSupportActionBar()).hide();
+                binding.navView.setVisibility(View.GONE);
+            } else if(id == R.id.aboutFragment){
+                Objects.requireNonNull(getSupportActionBar()).show();
                 binding.navView.setVisibility(View.GONE);
             } else {
                 Objects.requireNonNull(getSupportActionBar()).show();

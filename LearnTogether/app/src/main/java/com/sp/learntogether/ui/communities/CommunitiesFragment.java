@@ -2,6 +2,7 @@ package com.sp.learntogether.ui.communities;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
+import android.view.MenuInflater;
 import android.view.View;
 import com.sp.learntogether.astraDBHelper;
 import android.view.ViewGroup;
@@ -41,7 +42,9 @@ import java.util.Map;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.navigation.NavHost;
 import androidx.navigation.Navigation;
+import androidx.navigation.fragment.NavHostFragment;
 
 import com.sp.learntogether.R;
 import com.sp.learntogether.databinding.FragmentCommunitiesBinding;
@@ -61,6 +64,8 @@ public class CommunitiesFragment extends Fragment {
                              ViewGroup container, Bundle savedInstanceState) {
         CommunitiesViewModel communitiesViewModel =
                 new ViewModelProvider(this).get(CommunitiesViewModel.class);
+
+        setHasOptionsMenu(true);
 
         binding = FragmentCommunitiesBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
@@ -84,7 +89,22 @@ public class CommunitiesFragment extends Fragment {
         return root;
     }
 
+    @Override
+    public void onCreateOptionsMenu(@NonNull Menu menu, @NonNull MenuInflater inflater) {
+        inflater.inflate(R.menu.communities_menu, menu);
+        super.onCreateOptionsMenu(menu, inflater);
+    }
 
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        int id = item.getItemId();
+        if (id == R.id.createGC){
+            NavHostFragment.findNavController(this).navigate(R.id.action_communities_fragment_to_addGCFragment);
+        } else if(id == R.id.rmvGC){
+            Toast.makeText(getContext(),"Remove clicked",Toast.LENGTH_SHORT).show();
+        }
+        return super.onOptionsItemSelected(item);
+    }
 
     @Override
     public void onDestroyView() {

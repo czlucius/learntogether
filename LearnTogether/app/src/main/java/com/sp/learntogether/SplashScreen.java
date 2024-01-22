@@ -10,6 +10,7 @@ import android.speech.tts.TextToSpeech;
 import android.util.Log;
 
 import java.util.Locale;
+import java.util.Objects;
 
 public class SplashScreen extends AppCompatActivity implements TextToSpeech.OnInitListener{
     private TextToSpeech mTts;
@@ -20,6 +21,7 @@ public class SplashScreen extends AppCompatActivity implements TextToSpeech.OnIn
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash_screen);
         mTts = new TextToSpeech(this, this);
+        Objects.requireNonNull(getSupportActionBar()).hide();
         new Handler().postDelayed(new Runnable(){
             @Override
             public void run(){

@@ -16,5 +16,4 @@ public class astraDBHelper {
         headers.put("Accept", "application/json");
         return headers;
     }
-
 }

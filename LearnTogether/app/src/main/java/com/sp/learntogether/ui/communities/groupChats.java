@@ -91,7 +91,7 @@ public class groupChats extends Fragment {
         }
         else{
             commImg.setBackgroundResource(R.drawable.notfound);
-            communityType.setText("Type not found");
+            communityType.setText(comType + " Communities");
         }
         return view;
     }
@@ -118,6 +118,7 @@ public class groupChats extends Fragment {
                                 if(type.equals(comType)) {
                                     groupchatInfo info = new groupchatInfo(data.getJSONObject(i).getString("groupname"), data.getJSONObject(i).getString("description"), String.valueOf(data.getJSONObject(i).getInt("capacity")));
                                     gcInfoList.add(info);
+                                    adapter.notifyItemInserted(gcInfoList.size() - 1);
                                 }
                             }
                         }
