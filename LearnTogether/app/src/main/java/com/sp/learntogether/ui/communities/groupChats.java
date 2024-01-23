@@ -116,7 +116,7 @@ public class groupChats extends Fragment {
                             for (int i = 0; i <= count; i++) {
                                 String type = data.getJSONObject(i).getString("subject");
                                 if(type.equals(comType)) {
-                                    groupchatInfo info = new groupchatInfo(data.getJSONObject(i).getString("groupname"), data.getJSONObject(i).getString("description"), String.valueOf(data.getJSONObject(i).getInt("capacity")));
+                                    groupchatInfo info = new groupchatInfo(data.getJSONObject(i).getString("groupname"), data.getJSONObject(i).getString("description"), data.getJSONObject(i).getString("capacity"));
                                     gcInfoList.add(info);
                                     adapter.notifyItemInserted(gcInfoList.size() - 1);
                                 }

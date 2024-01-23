@@ -4,61 +4,114 @@ import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.Spinner;
+import android.widget.Toast;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link addGCFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
+import com.android.volley.NetworkResponse;
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.Volley;
+import com.sp.learntogether.databinding.FragmentAddGCBinding;
+import com.sp.learntogether.ui.communities.groupchatInfo;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 public class addGCFragment extends Fragment {
+    private FragmentAddGCBinding binding;
+    EditText grpName;
+    EditText grpDesc;
+    Spinner grpSpinner;
+    Button submit;
+    ArrayAdapter<CharSequence> adapter = null;
+    private int volleyResponseStatus;
+    private RequestQueue queue;
 
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
-
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
-
-    public addGCFragment() {
-        // Required empty public constructor
-    }
-
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment addGCFragment.
-     */
-    // TODO: Rename and change types and number of parameters
-    public static addGCFragment newInstance(String param1, String param2) {
-        addGCFragment fragment = new addGCFragment();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
-        return fragment;
-    }
-
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
-    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_add_g_c, container, false);
+        binding = FragmentAddGCBinding.inflate(getLayoutInflater(), container, false);
+        View view = binding.getRoot();
+        grpName = binding.addGroupName;
+        grpDesc = binding.addGroupDesc;
+        grpSpinner = binding.addSelectSubj;
+        submit = binding.saveGcButton;
+
+        adapter = ArrayAdapter.createFromResource(getContext(), R.array.communities_array, android.R.layout.simple_spinner_item);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+
+        grpSpinner.setAdapter(adapter);
+        submit.setOnClickListener(onSave);
+        return view;
     }
+
+    private View.OnClickListener onSave = new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            String gcName = grpName.getText().toString().trim();
+            String gcDesc = grpDesc.getText().toString().trim();
+            if(gcName.isEmpty() || gcDesc.isEmpty()){
+                Toast.makeText(getContext(), "Please enter text for name and description!", Toast.LENGTH_LONG).show();
+            } else{
+                String subject = grpSpinner.getSelectedItem().toString();
+                insertVolley(gcName, gcDesc, subject, "1");
+            }
+        }
+    };
+
+    private void insertVolley(String gcName, String gcDesc, String subject, String capacity) {
+        // Create a JSON object from the parameters
+        Map<String, String> params = new HashMap<String, String>();
+        params.put("groupname", gcName);
+        params.put("description", gcDesc);
+        params.put("subject", subject);
+        params.put("capacity", capacity);
+        JSONObject postdata = new JSONObject(params); // Data as JSON object to be insert into the database
+        RequestQueue queue = Volley.newRequestQueue(getContext());
+        // Rest api link
+        String url = astraDBHelper.groupChatsUrl;
+        // Use POST REST api call
+        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST, url, postdata,
+                new Response.Listener<JSONObject>() {
+                    @Override
+                    public void onResponse(JSONObject response) {
+                        Toast.makeText(getContext(), "Successfully inserted into Database", Toast.LENGTH_LONG).show();
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        // TODO: Handle error
+                        Log.e("OnErrorResponse", error.toString());
+                        Toast.makeText(getContext(), "Error inserting into Database", Toast.LENGTH_LONG).show();
+                    }
+                }) {
+            @Override
+            public Map<String, String> getHeaders() {
+                return astraDBHelper.getHeader();
+            }
+        };
+        // add JsonObjectRequest to the RequestQueue
+        queue.add(jsonObjectRequest);
+    }
+
+
 }

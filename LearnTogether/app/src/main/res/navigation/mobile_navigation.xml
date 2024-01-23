@@ -14,7 +14,7 @@
     <fragment
         android:id="@+id/planner_fragment"
         android:name="com.sp.learntogether.ui.planner.PlannerFragment"
-        android:label="@string/title_planner"
+        android:label="Study Timer"
         tools:layout="@layout/fragment_planner" />
 
     <fragment
