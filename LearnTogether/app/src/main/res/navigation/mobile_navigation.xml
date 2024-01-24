@@ -14,8 +14,12 @@
     <fragment
         android:id="@+id/planner_fragment"
         android:name="com.sp.learntogether.ui.planner.PlannerFragment"
-        android:label="Study Timer"
-        tools:layout="@layout/fragment_planner" />
+        android:label="Study Buddy"
+        tools:layout="@layout/fragment_planner" >
+        <action
+            android:id="@+id/action_planner_fragment_to_addStudyPlace2"
+            app:destination="@id/addYourStudyPlace" />
+    </fragment>
 
     <fragment
         android:id="@+id/communities_fragment"
@@ -63,5 +67,10 @@
         android:name="com.sp.learntogether.addGCFragment"
         android:label="Create Your Groupchat!"
         tools:layout="@layout/fragment_add_g_c" />
+    <fragment
+        android:id="@+id/addYourStudyPlace"
+        android:name="com.sp.learntogether.addStudyPlace"
+        android:label="Log Your Study Places!"
+        tools:layout="@layout/fragment_add_study_place" />
 
 </navigation>

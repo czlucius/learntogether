@@ -1,35 +1,34 @@
 package com.sp.learntogether.ui.planner;
 
-
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
-import android.content.SharedPreferences;
+import android.media.MediaPlayer;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
-import androidx.core.app.AppOpsManagerCompat;
 import androidx.core.app.NotificationCompat;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.ViewModelProvider;
+import androidx.navigation.fragment.NavHostFragment;
 
 import com.sp.learntogether.R;
 import com.sp.learntogether.databinding.FragmentPlannerBinding;
 
-import java.util.List;
-import java.util.Objects;
 
 public class PlannerFragment extends Fragment {
 
     private FragmentPlannerBinding binding;
+    MediaPlayer mp;
     private EditText hourText, minuteText, secondsText;
     private String hourString, minutesString, secondsString;
     private Integer hours, minutes, seconds;
@@ -46,7 +45,6 @@ public class PlannerFragment extends Fragment {
     ViewGroup allViews;
 
 
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -56,10 +54,8 @@ public class PlannerFragment extends Fragment {
         allViews = (ViewGroup) view;
 
         create_notification_channel();
+        mp = MediaPlayer.create(getContext(),R.raw.googleduoring);
 
-
-
-        //Initialize buttons & edit texts
         startButton = binding.startButton;
         pauseButton = binding.pauseButton;
         resetButton = binding.resetButton;
@@ -67,7 +63,6 @@ public class PlannerFragment extends Fragment {
         hourText = binding.hourText;
         minuteText = binding.minuteText;
         secondsText = binding.secondsText;
-
 
         //Timer button listeners
         startButton.setOnClickListener(new View.OnClickListener() {
@@ -109,8 +104,6 @@ public class PlannerFragment extends Fragment {
             }
         });
 
-
-
         pauseButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -133,68 +126,26 @@ public class PlannerFragment extends Fragment {
                 resetTimer();
             }
         });
+        setHasOptionsMenu(true);
         return view;
     }
+    @Override
+    public void onCreateOptionsMenu(@NonNull Menu menu, @NonNull MenuInflater inflater) {
+        inflater.inflate(R.menu.planner_menu, menu);
+        super.onCreateOptionsMenu(menu, inflater);
+    }
 
-//    @Override
-//    protected void onStop() {
-//        super.onStop();
-//
-//        saveTimePrefsEdit.putLong("millisLeft", timeLeftInMillis);
-//        saveTimePrefsEdit.putBoolean("timerRunning", timerRunning);
-//        saveTimePrefsEdit.putLong("endTime", endTime);
-//
-//        saveTimePrefsEdit.apply();
-//    }
-//
-//    @Override
-//    protected void onStart() {
-//        super.onStart();
-//
-//        ObjectAnimator fadeIn;
-//
-//        for(int i = 0; i < allViews.getChildCount(); i++) {
-//            allViews.getChildAt(i);
-//            fadeIn = ObjectAnimator.ofFloat(allViews.getChildAt(i), "alpha", 0f, 1f);
-//            fadeIn.setDuration(750);
-//            fadeIn.start();
-//        }
-//
-//        timeLeftInMillis = saveTimePrefs.getLong("millisLeft", 0);
-//        timerRunning = saveTimePrefs.getBoolean("timerRunning", false);
-//
-//        if(timerRunning) {
-//            endTime = saveTimePrefs.getLong("endTime", 0);
-//            timeLeftInMillis = endTime - System.currentTimeMillis();
-//
-//            if(timeLeftInMillis < 0) {
-//                timeLeftInMillis = 0;
-//                timerRunning = false;
-//                updateCountDownText();
-//
-//                hourText.setText("00");
-//                minuteText.setText("00");
-//                secondsText.setText("00");
-//
-//                startButton.setVisibility(View.VISIBLE);
-//                resetButton.setVisibility(View.INVISIBLE);
-//                pauseButton.setVisibility(View.INVISIBLE);
-//
-//                hourText.setEnabled(true);
-//                minuteText.setEnabled(true);
-//                secondsText.setEnabled(true);
-//
-//            } else {
-//                startButton.setVisibility(View.INVISIBLE);
-//                resetButton.setVisibility(View.VISIBLE);
-//                pauseButton.setVisibility(View.VISIBLE);
-//
-//                startTimer();
-//            }
-//        }
-//
-//
-//    }
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        if(timerRunning){
+            resetTimer();
+        }
+        int id = item.getItemId();
+        if (id == R.id.addStudyPlace){
+            NavHostFragment.findNavController(this).navigate(R.id.action_planner_fragment_to_addStudyPlace2);
+        }
+        return super.onOptionsItemSelected(item);
+    }
 
     private void resetTimer() {
         countDownTimer.cancel();
@@ -236,14 +187,14 @@ public class PlannerFragment extends Fragment {
 
                 NotificationCompat.Builder builder = new NotificationCompat.Builder(getContext(), CHANNEL_ID)
                         .setSmallIcon(R.drawable.ic_baseline_alarm_24)
-                        .setContentTitle("Timer Finished")
+                        .setContentTitle("Study Timer Has Finished")
                         .setPriority(NotificationCompat.PRIORITY_DEFAULT)
                         ;
 
                 notificationManager.notify(1, builder.build());
 
                 resetTimer();
-
+                mp.start();
             }
         }.start();
 
