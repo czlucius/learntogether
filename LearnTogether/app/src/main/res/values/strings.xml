@@ -29,4 +29,15 @@
     <string name="scan_your_books_here">Scan your books here.</string>
     <string name="isbn_search_desc">LearnTogether will search up the book via an ISBN lookup.</string>
     <string name="enter_isbn">Enter ISBN</string>
+    <string name="permanent_denial_promt">Camera permission denied. Please enter the ISBN code manually or enable it in system settings.</string>
+    <string name="grant">Grant</string>
+    <string name="camera_book_rationale">Camera permissions are required to scan the book via the device camera.</string>
+    <string name="permissions_required">Permissions required</string>
+    <string name="cancel">Cancel</string>
+    <string name="failure_to_start_camera">Failure to start camera.</string>
+    <string name="save">Save</string>
+    <string name="authors">Authors</string>
+    <string name="isbn_template">ISBN: %1$s</string>
+    <string name="book_share_template">Check out this book I saved on LearnTogether: %1$s - %2$s!\n%3$s</string>
+    <string name="share_with_your_friends">Share %1$s with your friends!</string>
 </resources>
