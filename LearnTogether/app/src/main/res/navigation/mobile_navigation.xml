@@ -63,5 +63,10 @@
         android:name="com.sp.learntogether.ScanBookFragment"
         android:label="fragment_scan_book"
         tools:layout="@layout/fragment_scan_book" />
+    <fragment
+        android:id="@+id/scannerFragment"
+        android:name="com.sp.learntogether.ScannerFragment"
+        android:label="fragment_scanner"
+        tools:layout="@layout/fragment_scanner" />
 
 </navigation>
