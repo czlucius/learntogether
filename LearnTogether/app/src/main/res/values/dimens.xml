@@ -6,4 +6,5 @@
     <dimen name="nav_header_height">176dp</dimen>
 
     <dimen name="view_curve_radius">16dp</dimen>
+    <dimen name="border_circle_pics">2dp</dimen>
 </resources>

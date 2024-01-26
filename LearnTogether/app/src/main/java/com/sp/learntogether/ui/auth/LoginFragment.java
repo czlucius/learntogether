@@ -34,7 +34,7 @@ public class LoginFragment extends Fragment {
 
     }
     private void navigateSignUp() {
-        // TODO
+        nc.navigate(R.id.action_loginFragment_to_registerFragment);
     }
 
 
@@ -98,8 +98,7 @@ public class LoginFragment extends Fragment {
 
 
         binding.newUserBtn.setOnClickListener(v -> {
-
-            navigateHome();
+            navigateSignUp();
         });
         binding.signInBtn.setOnClickListener(v -> {
             String email = Objects.requireNonNull(binding.emailField.getEditText()).getText().toString();

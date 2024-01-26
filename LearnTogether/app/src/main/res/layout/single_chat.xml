@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="message"
+            type="String" >
+
+        </variable>
+
+        <variable
+            name="from"
+            type="String" />
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/root_chat"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <com.google.android.material.imageview.ShapeableImageView
+            android:id="@+id/profile_ai_chat"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="16dp"
+            android:contentDescription="@string/profile_picture"
+            android:padding="1dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.0"
+            app:shapeAppearanceOverlay="@style/Theme.LearnTogether.CircleImageStyle"
+            app:strokeWidth="2dp"
+            tools:src="@drawable/applogo" />
+
+        <TextView
+            android:id="@+id/textView4"
+            android:text="@{from}"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="16dp"
+            android:textAppearance="@style/TextAppearance.Material3.TitleSmall"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toEndOf="@+id/profile_ai_chat"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="You" />
+
+        <TextView
+            android:id="@+id/message_ai_chat"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="16dp"
+            android:text="@{message}"
+            android:textAppearance="@style/TextAppearance.Material3.BodyLarge"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toEndOf="@+id/profile_ai_chat"
+            app:layout_constraintTop_toBottomOf="@+id/textView4"
+            tools:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer eu quam non mi cursus lacinia. Sed bibendum rhoncus dictum. Ut vitae ante eget lectus porttitor convallis eu non ipsum. Phasellus consectetur euismod arcu vel luctus. Pellentesque vestibulum justo non sagittis tempus. Vivamus vel odio tincidunt, fringilla libero non, fringilla augue. Donec non lorem magna. Maecenas vehicula pulvinar libero eget sagittis. Aenean mollis eleifend dui vitae vestibulum. Ut varius mi quis purus accumsan tristique. Integer ex tellus, dignissim id eros ut, varius hendrerit augue. Mauris imperdiet nisl dignissim risus blandit aliquam. Donec non eros vel nisi lacinia imperdiet. Nam imperdiet nibh nunc, vel euismod lorem tempor tempus. Ut vitae velit sit amet nisi semper fringilla. Etiam elementum est mauris. " />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

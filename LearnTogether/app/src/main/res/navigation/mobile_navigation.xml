@@ -50,6 +50,7 @@
             app:destination="@id/loginFragment" />
     </fragment>
     <fragment
+<<<<<<< HEAD
         android:id="@+id/libraryFragment"
         android:name="com.sp.learntogether.ui.library.LibraryFragment"
         android:label="@string/library"
@@ -68,5 +69,12 @@
         android:name="com.sp.learntogether.ScannerFragment"
         android:label="fragment_scanner"
         tools:layout="@layout/fragment_scanner" />
+
+    <fragment
+        android:id="@+id/generativeChatFragment"
+        android:name="com.sp.learntogether.ui.ai.GenerativeChatFragment"
+        android:label="@string/chat_with_learnbot"
+        tools:layout="@layout/fragment_generative_chat" />
+
 
 </navigation>
