@@ -68,7 +68,9 @@ dependencies {
     annotationProcessor "androidx.room:room-compiler:$room_version"
 
 
-}
+    implementation 'com.google.mlkit:face-detection:16.1.5'
+
+}//
 
 apply plugin: 'com.google.gms.google-services'
 

@@ -33,11 +33,23 @@
     <string name="grant">Grant</string>
     <string name="camera_book_rationale">Camera permissions are required to scan the book via the device camera.</string>
     <string name="permissions_required">Permissions required</string>
-    <string name="cancel">Cancel</string>
     <string name="failure_to_start_camera">Failure to start camera.</string>
     <string name="save">Save</string>
     <string name="authors">Authors</string>
     <string name="isbn_template">ISBN: %1$s</string>
     <string name="book_share_template">Check out this book I saved on LearnTogether: %1$s - %2$s!\n%3$s</string>
     <string name="share_with_your_friends">Share %1$s with your friends!</string>
+    <string name="name">Name</string>
+    <string name="username_hint">Username (e.g. @johndoe)</string>
+    <string name="signup_for_learntogether_today">Signup for\nLearnTogether today!</string>
+    <string name="sign_up">Sign Up</string>
+    <string name="confirm_password">Confirm Password</string>
+    <string name="remove_profile_picture">Remove profile picture?</string>
+    <string name="clear_pfp_notice">This will clear the profile picture you have set.</string>
+    <string name="confirm">Confirm</string>
+    <string name="cancel">Cancel</string>
+    <string name="face_detected">Your picture has a face!</string>
+    <string name="no_face">No face!</string>
+    <string name="add_face_notice">We encourage you to add a picture with your face for better personal interaction</string>
+>>>>>>> czl-register
 </resources>
