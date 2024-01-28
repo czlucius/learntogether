@@ -3,6 +3,8 @@ package com.sp.learntogether.ui.communities;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.navigation.NavController;
+import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -12,7 +14,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.android.volley.NetworkResponse;
 import com.android.volley.Request;
@@ -23,7 +24,7 @@ import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 import com.sp.learntogether.R;
 import com.sp.learntogether.astraDBHelper;
-import com.sp.learntogether.databinding.FragmentGroupChatsBinding;
+import com.sp.learntogether.databinding.FragmentForumPostsBinding;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -33,13 +34,13 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-public class groupChats extends Fragment {
-    RecyclerView grpListings;
+public class forumPosts extends Fragment implements recycler_interface{
+    RecyclerView forumListings;
     private RequestQueue queue;
-    List<groupchatInfo> gcInfoList = null;
-    gcListAdapter adapter = null;
+    List<forumPostInfo> forumList = null;
+    forumListAdapter adapter = null;
     private int volleyResponseStatus;
-    private FragmentGroupChatsBinding binding;
+    private FragmentForumPostsBinding binding;
     private String comType;
     private ImageView commImg;
     private TextView communityType;
@@ -49,76 +50,76 @@ public class groupChats extends Fragment {
                              Bundle savedInstanceState) {
         comType = getArguments().getString("comType");
         // Inflate the layout for this fragment
-        binding = FragmentGroupChatsBinding.inflate(getLayoutInflater(), container, false);
+        binding = FragmentForumPostsBinding.inflate(getLayoutInflater(), container, false);
         View view = binding.getRoot();
 
-        grpListings = binding.grpList;
-        gcInfoList = new ArrayList<groupchatInfo>();
-        getAllSubjGC();
-        grpListings.setLayoutManager(new LinearLayoutManager(getContext()));
-        adapter = new gcListAdapter(getContext(),gcInfoList);
-        grpListings.setAdapter(adapter);
+        forumListings = binding.forumRecycler;
+        forumList = new ArrayList<forumPostInfo>();
+        getAllSubjPosts();
+        forumListings.setLayoutManager(new LinearLayoutManager(getContext()));
+        adapter = new forumListAdapter(getContext(), forumList, this::OnItemClick);
+        forumListings.setAdapter(adapter);
 
         commImg = binding.comImg;
         communityType = binding.comTypeGC;
         if(comType.equals("Mathematics")){
             commImg.setBackgroundResource(R.drawable.math);
-            communityType.setText("Mathematics Communities");
+            communityType.setText("Mathematics Forum");
         } else if(comType.equals("English")){
             commImg.setBackgroundResource(R.drawable.english);
-            communityType.setText("English Communities");
+            communityType.setText("English Forum");
         } else if(comType.equals("Science")){
             commImg.setBackgroundResource(R.drawable.science);
-            communityType.setText("Science Communities");
+            communityType.setText("Science Forum");
         } else if(comType.equals("Social Studies")){
             commImg.setBackgroundResource(R.drawable.socialstudies);
-            communityType.setText("Social Studies Communities");
+            communityType.setText("Social Studies Forum");
         } else if(comType.equals("History")){
             commImg.setBackgroundResource(R.drawable.history);
-            communityType.setText("History Communities");
+            communityType.setText("History Forum");
         } else if(comType.equals("Geography")){
             commImg.setBackgroundResource(R.drawable.geography);
-            communityType.setText("Geography Communities");
+            communityType.setText("Geography Forum");
         } else if(comType.equals("Piano")){
             commImg.setBackgroundResource(R.drawable.piano);
-            communityType.setText("Piano Communities");
+            communityType.setText("Piano Forum");
         } else if(comType.equals("Violin")){
             commImg.setBackgroundResource(R.drawable.violin);
-            communityType.setText("Violin Communities");
+            communityType.setText("Violin Forum");
         } else if(comType.equals("Planting")){
             commImg.setBackgroundResource(R.drawable.planting);
-            communityType.setText("Planting Communities");
+            communityType.setText("Planting Forum");
         }
         else{
             commImg.setBackgroundResource(R.drawable.notfound);
-            communityType.setText(comType + " Communities");
+            communityType.setText(comType + " Forum");
         }
         return view;
     }
     @Override
     public void onDestroyView(){
         super.onDestroyView();
-        gcInfoList.clear();
+        forumList.clear();
         binding = null;
     }
-    private void getAllSubjGC(){
+    private void getAllSubjPosts(){
         queue = Volley.newRequestQueue(getContext());
-        String url = astraDBHelper.groupChatsUrl + "rows";
+        String url = astraDBHelper.forumPostUrl + "rows";
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
             @Override
             public void onResponse(JSONObject response) {
                 if (volleyResponseStatus == 200) {
                     try {
                         int count = response.getInt("count");
-                        gcInfoList.clear();
+                        forumList.clear();
                         if (count > 0) {
                             JSONArray data = response.getJSONArray("data");
                             for (int i = 0; i <= count; i++) {
                                 String type = data.getJSONObject(i).getString("subject");
                                 if(type.equals(comType)) {
-                                    groupchatInfo info = new groupchatInfo(data.getJSONObject(i).getString("groupname"), data.getJSONObject(i).getString("description"), data.getJSONObject(i).getString("capacity"));
-                                    gcInfoList.add(info);
-                                    adapter.notifyItemInserted(gcInfoList.size() - 1);
+                                    forumPostInfo info = new forumPostInfo(data.getJSONObject(i).getString("username"), data.getJSONObject(i).getString("id"), data.getJSONObject(i).getString("profileimg"), data.getJSONObject(i).getString("forumquestion"), data.getJSONObject(i).getString("datetime"));
+                                    forumList.add(info);
+                                    adapter.notifyItemInserted(forumList.size() - 1);
                                 }
                             }
                         }
@@ -145,5 +146,20 @@ public class groupChats extends Fragment {
             }
         };
         queue.add(jsonObjectRequest);
+    }
+
+    @Override
+    public void OnItemClick(int position){
+        Bundle bundle = new Bundle();
+        String postId = forumList.get(position).getId();
+        String username = forumList.get(position).getName();
+        String profileImage = forumList.get(position).getProfileImage();
+        String forumBody = forumList.get(position).getForumQuestion();
+        String dateTime = forumList.get(position).getCurrentDateTime();
+        bundle.putString("postId", postId);
+        bundle.putString("username", username);
+        bundle.putString("profileImage", profileImage);
+        bundle.putString("forumBody", forumBody);
+        bundle.putString("dateTime", dateTime);
     }
 }

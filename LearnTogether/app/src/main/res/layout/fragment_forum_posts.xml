@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#8392A3"
-    tools:context=".ui.communities.groupChats">
+    tools:context=".ui.communities.forumPosts">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -37,7 +37,7 @@
         </LinearLayout>
 
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/grpList"
+            android:id="@+id/forumRecycler"
             android:layout_width="wrap_content"
             android:layout_height="375sp"
             android:layout_gravity="center_horizontal"

@@ -142,7 +142,7 @@ public class PlannerFragment extends Fragment {
         }
         int id = item.getItemId();
         if (id == R.id.addStudyPlace){
-            NavHostFragment.findNavController(this).navigate(R.id.action_planner_fragment_to_addStudyPlace2);
+            //NavHostFragment.findNavController(this).navigate(R.id.action_planner_fragment_to_addStudyPlace2);
         }
         return super.onOptionsItemSelected(item);
     }

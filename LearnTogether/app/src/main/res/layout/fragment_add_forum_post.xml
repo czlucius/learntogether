@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="#EDEFFF"
     android:backgroundTint="#EDEFFF"
-    tools:context=".addGCFragment">
+    tools:context=".addPostFragment">
 
     <TextView
         android:id="@+id/textView7"
@@ -14,7 +14,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="50sp"
-        android:text="Add Your Group Details!"
+        android:text="What's on your mind?"
         android:textColor="#000000"
         android:textSize="30sp" />
 
@@ -24,84 +24,10 @@
         android:orientation="vertical">
 
         <androidx.cardview.widget.CardView
-            android:layout_width="wrap_content"
-            android:layout_height="58dp"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginTop="125sp"
-            app:cardCornerRadius="10sp"
-            app:cardElevation="15sp">
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="horizontal">
-
-                <ImageView
-                    android:id="@+id/gassg"
-                    android:layout_width="50sp"
-                    android:layout_height="40sp"
-                    android:layout_gravity="center_vertical"
-                    android:layout_marginLeft="10sp"
-                    android:layout_marginRight="20sp"
-                    android:layout_weight="1"
-                    android:src="@drawable/name" />
-
-                <EditText
-                    android:id="@+id/addGroupName"
-                    android:layout_width="250sp"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_vertical"
-                    android:background="@android:color/transparent"
-                    android:layout_marginRight="20sp"
-                    android:ems="10"
-                    android:hint="Enter your group name!"
-                    android:inputType="text" />
-            </LinearLayout>
-
-        </androidx.cardview.widget.CardView>
-
-        <androidx.cardview.widget.CardView
-            android:layout_width="wrap_content"
-            android:layout_height="58dp"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginTop="25sp"
-            app:cardCornerRadius="10sp"
-            app:cardElevation="15sp">
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="horizontal">
-
-                <ImageView
-                    android:id="@+id/gadd2"
-                    android:layout_width="50sp"
-                    android:layout_height="40sp"
-                    android:layout_gravity="center_vertical"
-                    android:layout_marginLeft="10sp"
-                    android:layout_marginRight="20sp"
-                    android:layout_weight="1"
-                    android:src="@drawable/descriptionicon" />
-
-                <EditText
-                    android:id="@+id/addGroupDesc"
-                    android:layout_width="250sp"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_vertical"
-                    android:layout_marginRight="20sp"
-                    android:background="@android:color/transparent"
-                    android:ems="10"
-                    android:hint="Enter the group description!"
-                    android:inputType="text" />
-            </LinearLayout>
-
-        </androidx.cardview.widget.CardView>
-
-        <androidx.cardview.widget.CardView
             android:layout_width="350sp"
             android:layout_height="58dp"
             android:layout_gravity="center_horizontal"
-            android:layout_marginTop="25sp"
+            android:layout_marginTop="125sp"
             app:cardCornerRadius="10sp"
             app:cardElevation="15sp">
 
@@ -133,14 +59,55 @@
 
         </androidx.cardview.widget.CardView>
 
+        <androidx.cardview.widget.CardView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="25sp"
+            app:cardCornerRadius="10sp"
+            app:cardElevation="15sp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="10sp"
+                android:layout_marginBottom="10sp"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:id="@+id/gadd2"
+                    android:layout_width="50sp"
+                    android:layout_height="40sp"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="10sp"
+                    android:layout_marginRight="20sp"
+                    android:layout_weight="1"
+                    android:src="@drawable/descriptionicon" />
+
+                <EditText
+                    android:id="@+id/addForumDesc"
+                    android:layout_width="250sp"
+                    android:layout_height="82dp"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginRight="20sp"
+                    android:background="@android:color/transparent"
+                    android:ems="10"
+                    android:hint="Enter Here!"
+                    android:inputType="text|textMultiLine"
+                    android:maxLines="10"
+                    android:scrollbars="vertical" />
+            </LinearLayout>
+
+        </androidx.cardview.widget.CardView>
+
         <Button
-            android:id="@+id/saveGcButton"
+            android:id="@+id/savePostButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="30sp"
             android:elevation="20sp"
-            android:text="Create Your Group!" />
+            android:text="Create Your Post!" />
     </LinearLayout>
 
 </FrameLayout>

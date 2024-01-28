@@ -5,10 +5,5 @@
         android:id="@+id/createGC"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:title="Create group chat" />
-    <item
-        android:id="@+id/rmvGC"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:title="Remove group chat" />
+        android:title="Create Forum Post" />
 </menu>

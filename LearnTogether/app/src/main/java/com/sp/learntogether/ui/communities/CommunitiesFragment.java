@@ -4,6 +4,8 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.MenuInflater;
 import android.view.View;
+
+import com.google.firebase.auth.FirebaseAuth;
 import com.sp.learntogether.astraDBHelper;
 import android.view.ViewGroup;
 import android.widget.TextView;
@@ -52,10 +54,12 @@ import android.widget.GridView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
+import com.sp.learntogether.ui.LoginFragment;
 
 public class CommunitiesFragment extends Fragment {
     GridView communityGV;
     communitiesGVadapter adapter = null;
+    private FirebaseAuth auth;
     private FragmentCommunitiesBinding binding;
     private RequestQueue queue;
     private int volleyResponseStatus;
@@ -81,7 +85,7 @@ public class CommunitiesFragment extends Fragment {
                 //Toast.makeText(getContext(), "You clicked: "+type, Toast.LENGTH_LONG).show();
                 Bundle bundle = new Bundle();
                 bundle.putString("comType", comType);
-                Navigation.findNavController(view).navigate(R.id.groupChats, bundle);
+                Navigation.findNavController(view).navigate(R.id.forumPosts, bundle);
             }
         });
         getAllVolley();
@@ -100,8 +104,6 @@ public class CommunitiesFragment extends Fragment {
         int id = item.getItemId();
         if (id == R.id.createGC){
             NavHostFragment.findNavController(this).navigate(R.id.action_communities_fragment_to_addGCFragment);
-        } else if(id == R.id.rmvGC){
-            Toast.makeText(getContext(),"Remove clicked",Toast.LENGTH_SHORT).show();
         }
         return super.onOptionsItemSelected(item);
     }
@@ -111,6 +113,9 @@ public class CommunitiesFragment extends Fragment {
         super.onDestroyView();
         binding = null;
     }
+
+
+
     private void getAllVolley(){
         queue = Volley.newRequestQueue(getContext());
         String url = astraDBHelper.communitiesUrl + "rows";

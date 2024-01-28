@@ -16,22 +16,19 @@
         android:name="com.sp.learntogether.ui.planner.PlannerFragment"
         android:label="Study Buddy"
         tools:layout="@layout/fragment_planner" >
-        <action
-            android:id="@+id/action_planner_fragment_to_addStudyPlace2"
-            app:destination="@id/addYourStudyPlace" />
     </fragment>
 
     <fragment
         android:id="@+id/communities_fragment"
         android:name="com.sp.learntogether.ui.communities.CommunitiesFragment"
-        android:label="@string/title_communities"
+        android:label="Forums"
         tools:layout="@layout/fragment_communities" >
         <action
             android:id="@+id/action_communities_fragment_to_groupChats2"
-            app:destination="@id/groupChats" />
+            app:destination="@id/forumPosts" />
         <action
             android:id="@+id/action_communities_fragment_to_addGCFragment"
-            app:destination="@id/addGCFragment" />
+            app:destination="@id/addPostFragment" />
     </fragment>
     <fragment
         android:id="@+id/loginFragment"
@@ -49,13 +46,16 @@
         android:label="@string/title_profile"
         tools:layout="@layout/fragment_profile"/>
     <fragment
-        android:id="@+id/groupChats"
-        android:name="com.sp.learntogether.ui.communities.groupChats"
-        android:label="Communities"
-        tools:layout="@layout/fragment_group_chats" >
+        android:id="@+id/forumPosts"
+        android:name="com.sp.learntogether.ui.communities.forumPosts"
+        android:label="Forums"
+        tools:layout="@layout/fragment_forum_posts" >
         <argument
             android:name="communityDestination"
             app:argType="string" />
+        <action
+            android:id="@+id/action_forumPosts_to_postScreen"
+            app:destination="@id/postScreen" />
     </fragment>
     <fragment
         android:id="@+id/aboutFragment"
@@ -63,14 +63,14 @@
         android:label="About the app"
         tools:layout="@layout/fragment_about" />
     <fragment
-        android:id="@+id/addGCFragment"
-        android:name="com.sp.learntogether.addGCFragment"
-        android:label="Create Your Groupchat!"
-        tools:layout="@layout/fragment_add_g_c" />
+        android:id="@+id/addPostFragment"
+        android:name="com.sp.learntogether.addPostFragment"
+        android:label="Make a Post!"
+        tools:layout="@layout/fragment_add_forum_post" />
     <fragment
-        android:id="@+id/addYourStudyPlace"
-        android:name="com.sp.learntogether.addStudyPlace"
-        android:label="Log Your Study Places!"
-        tools:layout="@layout/fragment_add_study_place" />
+        android:id="@+id/postScreen"
+        android:name="com.sp.learntogether.ui.communities.postScreen"
+        android:label="fragment_post_screen"
+        tools:layout="@layout/fragment_post_screen" />
 
 </navigation>
