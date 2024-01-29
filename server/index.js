@@ -15,6 +15,7 @@ const openai = new OpenAI({
     apiKey: process.env['OPENAI_API_KEY']
 });
 
+const {storageRouter} = require("./storage")
 
 const SYSTEM_PROMPT = `
 You are an assistant for homework questions supplied by the user.
@@ -81,6 +82,9 @@ app.post("/gpt", bodyParser.json(), async (req, res) => {
     res.json(send)
 
 })
+
+
+app.use("/storage", storageRouter)
 
 
 
