@@ -15,7 +15,7 @@ storageRouter.put("/upload", raw, async (req, res) => {
     const binary = req.body
     let name = req.headers["X-File-Name"]
     name ||= crypto.randomUUID()
-    const response = await s3Interactor.put(binary)
+    const response = await s3Interactor.put(name, binary)
     if (response.err) {
         res.status(500).json({
             error: "Failed to upload"
