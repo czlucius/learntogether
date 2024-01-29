@@ -30,7 +30,7 @@ storageRouter.put("/upload", raw, async (req, res) => {
     }
 
 })
-import { pipeline } from "node:stream/promises";
+const { pipeline } = require("node:stream/promises");
 /**
  * Warning: a huge security risk but no choice for CSAD.
  * In a real project PLEASE check for authentication.
