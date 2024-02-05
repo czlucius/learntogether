@@ -13,10 +13,10 @@
             android:id="@+id/library"
             android:icon="@drawable/ion_librarysharp"
             android:title="Your Library" />
-        <item
-            android:id="@+id/meetups"
-            android:icon="@drawable/grommeticons_group"
-            android:title="Study Meetups" />
+<!--        <item-->
+<!--            android:id="@+id/meetups"-->
+<!--            android:icon="@drawable/grommeticons_group"-->
+<!--            android:title="Study Meetups" />-->
         <item
             android:id="@+id/about"
             android:icon="@drawable/about"

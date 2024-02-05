@@ -21,4 +21,6 @@ interface TrackingDao {
     @Query("SELECT * FROM tracking WHERE timestmp >= :current")
     fun getFuture(current: Long): List<Track>
 
+    @Query("DELETE FROM tracking")
+    fun clear()
 }

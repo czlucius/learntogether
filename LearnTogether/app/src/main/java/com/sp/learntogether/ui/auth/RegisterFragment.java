@@ -90,6 +90,11 @@ public class RegisterFragment extends Fragment {
             String password = binding.passwordInputRegister.getEditText().getText().toString();
             String email = binding.emailInputRegister.getEditText().getText().toString();
             String name = binding.nameInputRegister.getEditText().getText().toString();
+            if (username.isEmpty() || password.isEmpty() || email.isEmpty() || name.isEmpty() || vm.getImageUri().getValue() == null) {
+                Snackbar.make(view, "Please fill up all fields & attach image", Snackbar.LENGTH_SHORT).show();
+                return;
+            }
+
 
             vm.signup(username, email, password, name);
         });

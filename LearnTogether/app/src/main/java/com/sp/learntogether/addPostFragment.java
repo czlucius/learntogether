@@ -80,7 +80,7 @@ public class addPostFragment extends Fragment {
                 String currentDateTime = DateFormat.getDateTimeInstance().format(new Date());
                 String insertId = UUID.randomUUID().toString();
                 getUserName(useremail, u -> {
-                    insertVolley(insertId, currentDateTime, addPostDesc, "testLink", subject, username);
+                    insertVolley(insertId, currentDateTime, addPostDesc, null,  subject, username);
                 });
             }
         }
@@ -137,6 +137,7 @@ public class addPostFragment extends Fragment {
         params.put("datetime", dateTime);
         params.put("forumquestion", forumDesc);
         params.put("profileimg", profileImg);
+        params.put("personuid", auth.getUid());
         params.put("subject", subject);
         params.put("username", username);
         JSONObject postdata = new JSONObject(params); // Data as JSON object to be insert into the database

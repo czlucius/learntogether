@@ -98,14 +98,26 @@
             android:id="@+id/book_delete"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_margin="16dp"
             android:text="@string/delete"
             app:chipIcon="@drawable/baseline_delete_24"
-            android:layout_margin="16dp"
-            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintBottom_toTopOf="@+id/book_view"
             app:layout_constraintEnd_toStartOf="@+id/guideline"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toEndOf="@+id/item_share"
             app:layout_constraintTop_toBottomOf="@+id/item_isbn" />
+
+        <com.google.android.material.chip.Chip
+            android:id="@+id/book_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="16dp"
+            android:text="View"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/guideline"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toEndOf="@+id/item_share"
+            app:layout_constraintTop_toBottomOf="@+id/item_share" />
 
         <androidx.constraintlayout.widget.Guideline
             android:id="@+id/guideline"

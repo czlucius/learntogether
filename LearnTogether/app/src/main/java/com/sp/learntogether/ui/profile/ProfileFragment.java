@@ -21,6 +21,8 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.sp.learntogether.BR;
 import com.sp.learntogether.R;
 import com.sp.learntogether.astraDBHelper;
+import com.sp.learntogether.data.AppDatabase;
+import com.sp.learntogether.data.TrackingDao;
 import com.sp.learntogether.databinding.FragmentProfileBinding;
 import com.sp.learntogether.io.DatabaseInteractor;
 import com.sp.learntogether.models.Profile;
@@ -39,12 +41,14 @@ public class ProfileFragment extends Fragment {
 
     private Profile profile = null;
 
+    private TrackingDao trackingDao;
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
         vm = new ViewModelProvider(this).get(ProfileViewModel.class);
         binding = FragmentProfileBinding.inflate(inflater, container, false);
+        trackingDao = AppDatabase.getInstance(requireContext()).trackingDao();
 //        ProfileFragmentArgs
 
         return binding.getRoot();
@@ -60,27 +64,10 @@ public class ProfileFragment extends Fragment {
         if (args.getProfile() == null) {
             Log.i(TAG, "onViewCreated: No profile supplied, fetching own profile");
             getMyProfile();
-        } else {
-            binding.setIsOther(args.getIsOther());
-            binding.setFriend(args.getIsFriend());
-            if (!args.getIsFriend()) {
-                // Is not a friend.
-                // In that case we can just add him as a friend, just add to AstraDB
-                // Asymmetric nature of friendships (friend is not notified)
-                binding.addFriend.setOnClickListener(v -> {
-                    // todo upload to AstraDB, PATCH request.
-                    if (profile == null) return;
-                    dbIO.addToList(astraDBHelper.userDetailsUrl, "friends", profile.getUid(), response -> {
-                        // Added to list successfully.
-                        binding.setFriend(true);
-                        binding.notifyPropertyChanged(BR.friend);
-                        v.setOnClickListener(null);
-                    });
-                });
-            }
         }
         NavController nc = NavHostFragment.findNavController(this);
         binding.logout.setOnClickListener(v -> {
+            trackingDao.clear();
             auth.signOut();
             nc.navigate(R.id.action_profile_fragment_to_loginFragment);
         });

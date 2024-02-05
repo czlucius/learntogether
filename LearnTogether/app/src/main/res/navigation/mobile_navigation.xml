@@ -36,8 +36,8 @@
         android:label="@string/login"
         tools:layout="@layout/fragment_login" >
         <action
-            android:id="@+id/action_loginFragment_to_navigation_home"
-            app:destination="@id/tutorial_fragment" />
+            android:id="@+id/action_loginFragment_to_communities_fragment"
+            app:destination="@id/communities_fragment" />
         <action
             android:id="@+id/action_loginFragment_to_registerFragment"
             app:destination="@id/registerFragment" />
@@ -72,7 +72,7 @@
     <fragment
         android:id="@+id/registerFragment"
         android:name="com.sp.learntogether.ui.auth.RegisterFragment"
-        android:label="fragment_register"
+        android:label="Register"
         tools:layout="@layout/fragment_register" >
         <action
             android:id="@+id/action_registerFragment_to_loginFragment"
@@ -90,12 +90,12 @@
     <fragment
         android:id="@+id/scanBookFragment"
         android:name="com.sp.learntogether.ScanBookFragment"
-        android:label="fragment_scan_book"
+        android:label="Scan book"
         tools:layout="@layout/fragment_scan_book" />
     <fragment
         android:id="@+id/scannerFragment"
         android:name="com.sp.learntogether.ScannerFragment"
-        android:label="fragment_scanner"
+        android:label="Scanner"
         tools:layout="@layout/fragment_scanner" />
 
     <fragment
@@ -106,7 +106,7 @@
     <fragment
         android:id="@+id/meetupsFragment"
         android:name="com.sp.learntogether.ui.MeetupsFragment"
-        android:label="fragment_meetups"
+        android:label="@string/meetups"
         tools:layout="@layout/fragment_meetups" >
         <action
             android:id="@+id/action_meetupsFragment_to_meetupMapsFragment"
@@ -115,7 +115,7 @@
     <fragment
         android:id="@+id/meetupMapsFragment"
         android:name="com.sp.learntogether.MeetupMapsFragment"
-        android:label="fragment_meetup_maps"
+        android:label="Maps"
         tools:layout="@layout/fragment_meetup_maps" >
         <argument android:name="location" app:argType="com.sp.learntogether.objects.Location" app:nullable="true"/>
         <argument android:name="meetup" app:argType="com.sp.learntogether.models.Meetup"/>

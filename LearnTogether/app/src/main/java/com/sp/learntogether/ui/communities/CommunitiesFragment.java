@@ -54,7 +54,7 @@ import android.widget.GridView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
-import com.sp.learntogether.ui.LoginFragment;
+import com.sp.learntogether.ui.auth.LoginFragment;
 
 public class CommunitiesFragment extends Fragment {
     GridView communityGV;

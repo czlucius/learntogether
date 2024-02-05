@@ -30,7 +30,7 @@ public class LoginFragment extends Fragment {
 
 
     private void navigateHome() {
-        nc.navigate(R.id.action_loginFragment_to_navigation_home);
+        nc.navigate(R.id.action_loginFragment_to_communities_fragment);
 
     }
     private void navigateSignUp() {

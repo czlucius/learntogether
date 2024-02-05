@@ -1,23 +1,50 @@
 package com.sp.learntogether.ui.communities;
 
+import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.widget.ImageView;
+
+import com.android.volley.RequestQueue;
+import com.android.volley.toolbox.ImageRequest;
+import com.android.volley.toolbox.Volley;
 
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.util.function.Consumer;
 
 public class forumPostInfo {
     private String name, id, forumQuestion, currentDateTime;
     private Bitmap profileImage;
+    private RequestQueue queue;
+    private String personuid;
 
     public forumPostInfo(String name, String id, String profileImageLink, String forumQuestion, String currentDateTime) {
         this.name = name;
         this.id = id;
-        this.profileImage = getBitmapFromURL(profileImageLink);
         this.forumQuestion = forumQuestion;
         this.currentDateTime = currentDateTime;
+    }
+
+    public void setPersonuid(String personuid) {
+        this.personuid = personuid;
+    }
+
+    public String getPersonuid() {
+        return personuid;
+    }
+
+    public void setBitmapFromURL(Context ctx, String src, Consumer<Bitmap> consumer) {
+        if (queue == null) {
+            queue = Volley.newRequestQueue(ctx);
+        }
+        ImageRequest req = new ImageRequest(src, bitmap -> {
+            this.profileImage = bitmap;
+            consumer.accept(bitmap);
+        }, 400, 400, ImageView.ScaleType.CENTER_CROP, Bitmap.Config.ARGB_8888, Throwable::printStackTrace);
+        queue.add(req);
     }
     public static Bitmap getBitmapFromURL(String src) {
         try {

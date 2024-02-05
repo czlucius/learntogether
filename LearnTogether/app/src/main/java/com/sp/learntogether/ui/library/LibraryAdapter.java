@@ -5,11 +5,13 @@ import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.webkit.WebView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.DiffUtil;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.android.material.bottomsheet.BottomSheetDialog;
 import com.sp.learntogether.data.AppDatabase;
 import com.sp.learntogether.data.BookDao;
 import com.sp.learntogether.data.BookDiffCallback;
@@ -59,6 +61,13 @@ public class LibraryAdapter extends RecyclerView.Adapter<LibraryAdapter.VH> {
 
                 dao.deleteOne(book);
             }).start();
+        });
+        binding.bookView.setOnClickListener(v-> {
+            WebView openBook = new WebView(context);
+            openBook.loadUrl("https://isbnsearch.org/isbn/"+book.isbn);
+            BottomSheetDialog bsd = new BottomSheetDialog(context);
+            bsd.setContentView(openBook);
+            bsd.show();
         });
     }
     public void updateLibrary(List<Book> newBooks) {

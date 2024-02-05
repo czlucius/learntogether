@@ -36,7 +36,6 @@ public class RegistrationHelper {
         try {
             obj = profile.toJsonObject();
             obj.put("fcmtoken", fcmToken);
-            obj.put("idtoken", idToken);
         } catch (JSONException e) {
             e.printStackTrace();
             throw new RegistrationException(context.getString(R.string.json_parsing_failure));

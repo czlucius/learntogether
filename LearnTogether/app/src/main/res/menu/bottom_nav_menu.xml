@@ -2,10 +2,9 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
-        android:id="@+id/tutorial_fragment"
-        android:icon="@drawable/tutorial"
-        android:title="@string/title_tutorials" />
-
+        android:id="@id/meetupsFragment"
+        android:icon="@drawable/baseline_people_24"
+        android:title="@string/meetups"/>
     <item
         android:id="@+id/planner_fragment"
         android:icon="@drawable/tabler_notebook"

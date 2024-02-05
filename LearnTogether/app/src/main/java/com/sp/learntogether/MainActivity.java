@@ -3,14 +3,21 @@ package com.sp.learntogether;
 import android.Manifest;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.graphics.Bitmap;
+import android.media.Image;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.Settings;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
+import com.android.volley.RequestQueue;
+import com.android.volley.toolbox.ImageRequest;
+import com.android.volley.toolbox.Volley;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import androidx.activity.result.ActivityResultLauncher;
@@ -30,16 +37,23 @@ import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
+import com.google.android.material.navigation.NavigationView;
 import com.google.android.material.snackbar.Snackbar;
+import com.google.firebase.auth.FirebaseAuth;
 import com.sp.learntogether.data.AppDatabase;
 import com.sp.learntogether.data.TrackingDao;
+import com.sp.learntogether.io.DatabaseInteractor;
 import com.sp.learntogether.ui.profile.ProfileFragment;
 
 import com.google.android.material.navigation.NavigationBarView;
 import com.sp.learntogether.databinding.ActivityMainBinding;
 
+import org.json.JSONException;
+
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.Date;
+import java.util.List;
 import java.util.Objects;
 
 public class MainActivity extends AppCompatActivity {
@@ -51,6 +65,9 @@ public class MainActivity extends AppCompatActivity {
     FragmentManager fragmentManager;
     BottomNavigationView botNavView;
     private TrackingDao dao;
+    private DatabaseInteractor dbIO;
+    private FirebaseAuth auth = FirebaseAuth.getInstance();
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,17 +75,28 @@ public class MainActivity extends AppCompatActivity {
 
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
+        RequestQueue queue = Volley.newRequestQueue(this);
+
 
         navController = NavHostFragment.findNavController(getSupportFragmentManager().findFragmentById(R.id.nav_host_fragment_activity_main));
-        appBar = new AppBarConfiguration.Builder(
-                R.id.planner_fragment,
-                R.id.tutorial_fragment,
+        int[] topLevel ={R.id.planner_fragment,
+                R.id.meetupsFragment,
                 R.id.communities_fragment,
                 R.id.profile_fragment,
-                R.id.loginFragment
+                R.id.loginFragment};
+
+        List<Integer> a = Arrays.asList(R.id.planner_fragment,
+                R.id.meetupsFragment,
+                R.id.communities_fragment,
+                R.id.profile_fragment,
+                R.id.loginFragment);
+        appBar = new AppBarConfiguration.Builder(
+                topLevel
         )
                 .setOpenableLayout(binding.drawerLayout)
                 .build();
+
+        dbIO = DatabaseInteractor.getInstance(this);
 
         NavigationUI.setupWithNavController(binding.navDrawer, navController);
         NavigationUI.setupActionBarWithNavController(this, navController, appBar);
@@ -76,12 +104,28 @@ public class MainActivity extends AppCompatActivity {
         NavigationUI.setupWithNavController(binding.navView, navController);
         binding.navView.setOnItemReselectedListener(v -> {});
 
+
+        NavigationView navigationView = binding.navDrawer;
+        View hView = navigationView.getHeaderView(0);
+        TextView nav_user = (TextView) hView.findViewById(R.id.username_in_header);
+        ImageView nav_profile = (ImageView) hView.findViewById(R.id.pfp_in_header);
+        dbIO.getRow(response -> {
+            try {
+                nav_user.setText(response.getJSONArray("data").getJSONObject(0).getString("username"));
+                ImageRequest req = new ImageRequest(response.getJSONArray("data").getJSONObject(0).getString("profilepicurl"), bitmap -> {
+                    nav_profile.setImageBitmap(bitmap);
+                }, 400, 400, ImageView.ScaleType.CENTER_CROP, Bitmap.Config.ARGB_8888, Throwable::printStackTrace);
+                queue.add(req);
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+        }, astraDBHelper.userDetailsUrl, auth.getUid());
         binding.navDrawer.setNavigationItemSelectedListener(item -> {
+
+            binding.drawerLayout.closeDrawers();
             if (item.getItemId() == R.id.ai) {
                 navController.navigate(R.id.generativeChatFragment);
                 return true;
-            } else if (item.getItemId() == R.id.meetups) {
-                navController.navigate(R.id.meetupsFragment);
             } else if (item.getItemId() == R.id.library) {
                 navController.navigate(R.id.libraryFragment);
             } else if(item.getItemId()==R.id.about){
@@ -103,12 +147,13 @@ public class MainActivity extends AppCompatActivity {
             if (id == R.id.loginFragment || id == R.id.registerFragment) {
                 Objects.requireNonNull(getSupportActionBar()).hide();
                 binding.navView.setVisibility(View.GONE);
-            } else if(id == R.id.aboutFragment){
-                Objects.requireNonNull(getSupportActionBar()).show();
-                binding.navView.setVisibility(View.GONE);
-            } else {
+            }
+            if (a.contains(id)) {
                 Objects.requireNonNull(getSupportActionBar()).show();
                 binding.navView.setVisibility(View.VISIBLE);
+            } else {
+                Objects.requireNonNull(getSupportActionBar()).show();
+                binding.navView.setVisibility(View.GONE);
             }
         });
 

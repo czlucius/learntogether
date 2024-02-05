@@ -27,6 +27,7 @@ import com.android.volley.toolbox.Volley;
 import com.sp.learntogether.R;
 import com.sp.learntogether.astraDBHelper;
 import com.sp.learntogether.databinding.FragmentForumPostsBinding;
+import com.sp.learntogether.io.DatabaseInteractor;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -108,6 +109,7 @@ public class forumPosts extends Fragment implements recycler_interface{
         binding = null;
     }
     private void getAllSubjPosts(){
+        DatabaseInteractor dbIO = DatabaseInteractor.getInstance(requireContext());
         queue = Volley.newRequestQueue(getContext());
         String url = astraDBHelper.forumPostUrl + "rows";
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
@@ -122,7 +124,17 @@ public class forumPosts extends Fragment implements recycler_interface{
                             for (int i = 0; i <= count; i++) {
                                 String type = data.getJSONObject(i).getString("subject");
                                 if(type.equals(comType)) {
-                                    forumPostInfo info = new forumPostInfo(data.getJSONObject(i).getString("username"), data.getJSONObject(i).getString("id"), data.getJSONObject(i).getString("profileimg"), data.getJSONObject(i).getString("forumquestion"), data.getJSONObject(i).getString("datetime"));
+                                    forumPostInfo info = new forumPostInfo(data.getJSONObject(i).getString("username"), data.getJSONObject(i).getString("id"), null, data.getJSONObject(i).getString("forumquestion"), data.getJSONObject(i).getString("datetime"));
+                                    info.setPersonuid(data.getJSONObject(i).getString("personuid"));
+                                    dbIO.getRow(response1 -> {
+                                        try {
+                                            info.setBitmapFromURL(requireContext(), response1.getJSONArray("data").getJSONObject(0).getString("profilepicurl"), unused -> {});
+                                        } catch (JSONException e) {
+                                            throw new RuntimeException(e);
+                                        }
+
+                                    }, astraDBHelper.userDetailsUrl, data.getJSONObject(i).getString("personuid"));
+
                                     forumList.add(info);
                                     adapter.notifyItemInserted(forumList.size() - 1);
                                 }
