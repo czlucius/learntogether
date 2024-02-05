@@ -38,6 +38,7 @@ public class forumListAdapter extends RecyclerView.Adapter<forumListAdapter.foru
         holder.name.setText(forumList.get(position).getName());
         holder.forumQuestion.setText(forumList.get(position).getForumQuestion());
         holder.forumDateTime.setText(forumList.get(position).getCurrentDateTime());
+        holder.profileImage.setImageBitmap(forumList.get(position).getProfileImage());
     }
 
     @Override

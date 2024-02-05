@@ -1,14 +1,45 @@
 package com.sp.learntogether.ui.communities;
 
-public class forumPostInfo {
-    private String name, id, profileImage, forumQuestion, currentDateTime;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 
-    public forumPostInfo(String name, String id, String profileImage, String forumQuestion, String currentDateTime) {
+import java.io.IOException;
+import java.io.InputStream;
+import java.net.HttpURLConnection;
+import java.net.URL;
+
+public class forumPostInfo {
+    private String name, id, forumQuestion, currentDateTime;
+    private Bitmap profileImage;
+
+    public forumPostInfo(String name, String id, String profileImageLink, String forumQuestion, String currentDateTime) {
         this.name = name;
         this.id = id;
-        this.profileImage = profileImage;
+        this.profileImage = getBitmapFromURL(profileImageLink);
         this.forumQuestion = forumQuestion;
         this.currentDateTime = currentDateTime;
+    }
+    public static Bitmap getBitmapFromURL(String src) {
+        try {
+            URL url = new URL(src);
+            HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+            connection.setDoInput(true);
+            connection.connect();
+            InputStream input = connection.getInputStream();
+            Bitmap myBitmap = BitmapFactory.decodeStream(input);
+            return myBitmap;
+        } catch (IOException e) {
+            // Log exception
+            return null;
+        }
+    }
+
+    public Bitmap getProfileImage() {
+        return profileImage;
+    }
+
+    public void setProfileImage(Bitmap profileImage) {
+        this.profileImage = profileImage;
     }
 
     public String getName() {
@@ -25,14 +56,6 @@ public class forumPostInfo {
 
     public void setId(String uid) {
         this.id = id;
-    }
-
-    public String getProfileImage() {
-        return profileImage;
-    }
-
-    public void setProfileImage(String profileImage) {
-        this.profileImage = profileImage;
     }
 
     public String getForumQuestion() {

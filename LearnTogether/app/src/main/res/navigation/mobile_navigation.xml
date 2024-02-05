@@ -70,7 +70,7 @@
     <fragment
         android:id="@+id/postScreen"
         android:name="com.sp.learntogether.ui.communities.postScreen"
-        android:label="fragment_post_screen"
+        android:label="Forums"
         tools:layout="@layout/fragment_post_screen" />
 
 </navigation>

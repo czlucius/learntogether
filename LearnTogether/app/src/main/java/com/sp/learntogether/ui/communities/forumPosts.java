@@ -1,10 +1,12 @@
 package com.sp.learntogether.ui.communities;
 
+import android.graphics.Bitmap;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
+import androidx.navigation.fragment.NavHostFragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -44,6 +46,7 @@ public class forumPosts extends Fragment implements recycler_interface{
     private String comType;
     private ImageView commImg;
     private TextView communityType;
+    private NavController navCon;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -59,6 +62,8 @@ public class forumPosts extends Fragment implements recycler_interface{
         forumListings.setLayoutManager(new LinearLayoutManager(getContext()));
         adapter = new forumListAdapter(getContext(), forumList, this::OnItemClick);
         forumListings.setAdapter(adapter);
+
+        navCon = NavHostFragment.findNavController(this);
 
         commImg = binding.comImg;
         communityType = binding.comTypeGC;
@@ -153,13 +158,14 @@ public class forumPosts extends Fragment implements recycler_interface{
         Bundle bundle = new Bundle();
         String postId = forumList.get(position).getId();
         String username = forumList.get(position).getName();
-        String profileImage = forumList.get(position).getProfileImage();
+        Bitmap profileImage = forumList.get(position).getProfileImage();
         String forumBody = forumList.get(position).getForumQuestion();
         String dateTime = forumList.get(position).getCurrentDateTime();
         bundle.putString("postId", postId);
         bundle.putString("username", username);
-        bundle.putString("profileImage", profileImage);
+        bundle.putParcelable("profileImage", profileImage);
         bundle.putString("forumBody", forumBody);
         bundle.putString("dateTime", dateTime);
+        navCon.navigate(R.id.postScreen, bundle);
     }
 }

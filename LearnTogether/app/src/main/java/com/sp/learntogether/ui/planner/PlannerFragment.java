@@ -126,25 +126,7 @@ public class PlannerFragment extends Fragment {
                 resetTimer();
             }
         });
-        setHasOptionsMenu(true);
         return view;
-    }
-    @Override
-    public void onCreateOptionsMenu(@NonNull Menu menu, @NonNull MenuInflater inflater) {
-        inflater.inflate(R.menu.planner_menu, menu);
-        super.onCreateOptionsMenu(menu, inflater);
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        if(timerRunning){
-            resetTimer();
-        }
-        int id = item.getItemId();
-        if (id == R.id.addStudyPlace){
-            //NavHostFragment.findNavController(this).navigate(R.id.action_planner_fragment_to_addStudyPlace2);
-        }
-        return super.onOptionsItemSelected(item);
     }
 
     private void resetTimer() {

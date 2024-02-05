@@ -33,6 +33,8 @@ import java.text.DateFormat;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.UUID;
+import java.util.function.Consumer;
 
 public class addPostFragment extends Fragment {
     private FragmentAddForumPostBinding binding;
@@ -76,52 +78,15 @@ public class addPostFragment extends Fragment {
                 auth = FirebaseAuth.getInstance();
                 String useremail = auth.getCurrentUser().getEmail();
                 String currentDateTime = DateFormat.getDateTimeInstance().format(new Date());
-                getUserName(useremail);
-                String insertId = String.valueOf(postId);
-                getInsertID();
-                Toast.makeText(getContext(), username, Toast.LENGTH_LONG).show();
-                // TODO implement code to get profile pic here
-                insertVolley(insertId, currentDateTime, addPostDesc, "testLink", subject, username);
+                String insertId = UUID.randomUUID().toString();
+                getUserName(useremail, u -> {
+                    insertVolley(insertId, currentDateTime, addPostDesc, "testLink", subject, username);
+                });
             }
         }
     };
 
-    private void getInsertID(){
-        queue = Volley.newRequestQueue(getContext());
-        String url = astraDBHelper.forumPostUrl + "rows";
-        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
-            @Override
-            public void onResponse(JSONObject response) {
-                if (volleyResponseStatus == 200) {
-                    try {
-                        int count = response.getInt("count");
-                        postId = count + 1;
-                    } catch (JSONException e) {
-                        e.printStackTrace();
-                    }
-                }
-            }
-        }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                Log.e("OnErrorResponse", error.toString());
-            }
-        }) {
-            @Override
-            public Map<String, String> getHeaders(){
-                return astraDBHelper.getHeader();
-            }
-
-            @Override
-            protected Response<JSONObject> parseNetworkResponse(NetworkResponse response){
-                volleyResponseStatus = response.statusCode;
-                return super.parseNetworkResponse(response);
-            }
-        };
-        queue.add(jsonObjectRequest);
-    }
-
-    private void getUserName(String useremail){
+    private void getUserName(String useremail, Consumer<String> callback){
         queue = Volley.newRequestQueue(getContext());
         String url = astraDBHelper.userDetailsUrl + "rows";
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
@@ -136,6 +101,7 @@ public class addPostFragment extends Fragment {
                                 String checkEmail = data.getJSONObject(i).getString("email");
                                 if(useremail.equals(checkEmail)){
                                     username = data.getJSONObject(i).getString("username");
+                                    callback.accept(username);
                                 }
                             }
                         }
@@ -182,7 +148,7 @@ public class addPostFragment extends Fragment {
                 new Response.Listener<JSONObject>() {
                     @Override
                     public void onResponse(JSONObject response) {
-                        //Toast.makeText(getContext(), "Successfully created post in " + subject +" forum" , Toast.LENGTH_LONG).show();
+                        Toast.makeText(getContext(), "Successfully created post in " + subject +" forum" , Toast.LENGTH_LONG).show();
                     }
                 },
                 new Response.ErrorListener() {

@@ -1,11 +1,10 @@
 package com.sp.learntogether.ui.communities;
 
 public class commentInfo {
-    private String username, profileImg, postId, dateTime, commentDesc;
+    private String username, postId, dateTime, commentDesc;
 
-    public commentInfo(String username, String profileImg, String postId, String dateTime, String commentDesc) {
+    public commentInfo(String username, String postId, String dateTime, String commentDesc) {
         this.username = username;
-        this.profileImg = profileImg;
         this.postId = postId;
         this.dateTime = dateTime;
         this.commentDesc = commentDesc;
@@ -17,14 +16,6 @@ public class commentInfo {
 
     public void setUsername(String username) {
         this.username = username;
-    }
-
-    public String getProfileImg() {
-        return profileImg;
-    }
-
-    public void setProfileImg(String profileImg) {
-        this.profileImg = profileImg;
     }
 
     public String getPostId() {

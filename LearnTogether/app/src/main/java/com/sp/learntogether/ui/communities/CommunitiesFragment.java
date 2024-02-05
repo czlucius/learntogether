@@ -59,15 +59,12 @@ import com.sp.learntogether.ui.LoginFragment;
 public class CommunitiesFragment extends Fragment {
     GridView communityGV;
     communitiesGVadapter adapter = null;
-    private FirebaseAuth auth;
     private FragmentCommunitiesBinding binding;
     private RequestQueue queue;
     private int volleyResponseStatus;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        CommunitiesViewModel communitiesViewModel =
-                new ViewModelProvider(this).get(CommunitiesViewModel.class);
 
         setHasOptionsMenu(true);
 
