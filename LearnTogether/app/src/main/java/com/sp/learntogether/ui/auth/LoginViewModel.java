@@ -1,13 +1,13 @@
-package com.sp.learntogether.ui;
+package com.sp.learntogether.ui.auth;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
-import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.sp.learntogether.R;
+
+import java.util.Objects;
 
 
 enum LoginState {
@@ -39,6 +39,9 @@ public class LoginViewModel extends ViewModel {
                         } else {
                             state.setValue(LoginState.NOT_VERIFIED);
                         }
+                    } else {
+                        if (task.getException() != null) {task.getException().printStackTrace();}
+                        state.setValue(LoginState.AUTH_FAILED);
                     }
                 });
     }

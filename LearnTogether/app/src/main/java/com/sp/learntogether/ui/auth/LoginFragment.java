@@ -1,4 +1,4 @@
-package com.sp.learntogether.ui;
+package com.sp.learntogether.ui.auth;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -7,7 +7,6 @@ import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.core.util.Preconditions;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.NavController;
@@ -35,7 +34,7 @@ public class LoginFragment extends Fragment {
 
     }
     private void navigateSignUp() {
-        // TODO
+        nc.navigate(R.id.action_loginFragment_to_registerFragment);
     }
 
 
@@ -99,8 +98,7 @@ public class LoginFragment extends Fragment {
 
 
         binding.newUserBtn.setOnClickListener(v -> {
-
-            navigateHome();
+            navigateSignUp();
         });
         binding.signInBtn.setOnClickListener(v -> {
             String email = Objects.requireNonNull(binding.emailField.getEditText()).getText().toString();

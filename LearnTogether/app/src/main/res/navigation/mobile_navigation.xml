@@ -14,28 +14,139 @@
     <fragment
         android:id="@+id/planner_fragment"
         android:name="com.sp.learntogether.ui.planner.PlannerFragment"
-        android:label="@string/title_planner"
-        tools:layout="@layout/fragment_planner" />
+        android:label="Study Buddy"
+        tools:layout="@layout/fragment_planner" >
+    </fragment>
 
     <fragment
         android:id="@+id/communities_fragment"
         android:name="com.sp.learntogether.ui.communities.CommunitiesFragment"
-        android:label="@string/title_communities"
-        tools:layout="@layout/fragment_communities" />
+        android:label="Forums"
+        tools:layout="@layout/fragment_communities" >
+        <action
+            android:id="@+id/action_communities_fragment_to_groupChats2"
+            app:destination="@id/forumPosts" />
+        <action
+            android:id="@+id/action_communities_fragment_to_addGCFragment"
+            app:destination="@id/addPostFragment" />
+    </fragment>
     <fragment
         android:id="@+id/loginFragment"
-        android:name="com.sp.learntogether.ui.LoginFragment"
+        android:name="com.sp.learntogether.ui.auth.LoginFragment"
         android:label="@string/login"
         tools:layout="@layout/fragment_login" >
         <action
             android:id="@+id/action_loginFragment_to_navigation_home"
             app:destination="@id/tutorial_fragment" />
+        <action
+            android:id="@+id/action_loginFragment_to_registerFragment"
+            app:destination="@id/registerFragment" />
     </fragment>
 
     <fragment
         android:id="@+id/profile_fragment"
         android:name="com.sp.learntogether.ui.profile.ProfileFragment"
         android:label="@string/title_profile"
-        tools:layout="@layout/fragment_profile"/>
+        tools:layout="@layout/fragment_profile">
+        <argument
+            android:name="profile"
+            android:defaultValue="@null"
+            app:argType="com.sp.learntogether.models.Profile"
+            app:nullable="true"/>
+
+        <argument
+            android:name="is_other"
+            android:defaultValue="false"
+            app:argType="boolean"
+            app:nullable="false"/>
+
+        <argument
+            android:name="is_friend"
+            android:defaultValue="false"
+            app:argType="boolean"
+            app:nullable="false"/>
+        <action
+            android:id="@+id/action_profile_fragment_to_loginFragment"
+            app:destination="@id/loginFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/registerFragment"
+        android:name="com.sp.learntogether.ui.auth.RegisterFragment"
+        android:label="fragment_register"
+        tools:layout="@layout/fragment_register" >
+        <action
+            android:id="@+id/action_registerFragment_to_loginFragment"
+            app:destination="@id/loginFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/libraryFragment"
+        android:name="com.sp.learntogether.ui.library.LibraryFragment"
+        android:label="@string/library"
+        tools:layout="@layout/fragment_library" >
+        <action
+            android:id="@+id/action_libraryFragment_to_scanBookFragment"
+            app:destination="@id/scanBookFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/scanBookFragment"
+        android:name="com.sp.learntogether.ScanBookFragment"
+        android:label="fragment_scan_book"
+        tools:layout="@layout/fragment_scan_book" />
+    <fragment
+        android:id="@+id/scannerFragment"
+        android:name="com.sp.learntogether.ScannerFragment"
+        android:label="fragment_scanner"
+        tools:layout="@layout/fragment_scanner" />
+
+    <fragment
+        android:id="@+id/generativeChatFragment"
+        android:name="com.sp.learntogether.ui.ai.GenerativeChatFragment"
+        android:label="@string/chat_with_learnbot"
+        tools:layout="@layout/fragment_generative_chat" />
+    <fragment
+        android:id="@+id/meetupsFragment"
+        android:name="com.sp.learntogether.ui.MeetupsFragment"
+        android:label="fragment_meetups"
+        tools:layout="@layout/fragment_meetups" >
+        <action
+            android:id="@+id/action_meetupsFragment_to_meetupMapsFragment"
+            app:destination="@id/meetupMapsFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/meetupMapsFragment"
+        android:name="com.sp.learntogether.MeetupMapsFragment"
+        android:label="fragment_meetup_maps"
+        tools:layout="@layout/fragment_meetup_maps" >
+        <argument android:name="location" app:argType="com.sp.learntogether.objects.Location" app:nullable="true"/>
+        <argument android:name="meetup" app:argType="com.sp.learntogether.models.Meetup"/>
+    </fragment>
+
+    <fragment
+        android:id="@+id/forumPosts"
+        android:name="com.sp.learntogether.ui.communities.forumPosts"
+        android:label="Forums"
+        tools:layout="@layout/fragment_forum_posts" >
+        <argument
+            android:name="communityDestination"
+            app:argType="string" />
+        <action
+            android:id="@+id/action_forumPosts_to_postScreen"
+            app:destination="@id/postScreen" />
+    </fragment>
+    <fragment
+        android:id="@+id/aboutFragment"
+        android:name="com.sp.learntogether.aboutFragment"
+        android:label="About the app"
+        tools:layout="@layout/fragment_about" />
+    <fragment
+        android:id="@+id/addPostFragment"
+        android:name="com.sp.learntogether.addPostFragment"
+        android:label="Make a Post!"
+        tools:layout="@layout/fragment_add_forum_post" />
+    <fragment
+        android:id="@+id/postScreen"
+        android:name="com.sp.learntogether.ui.communities.postScreen"
+        android:label="Forums"
+        tools:layout="@layout/fragment_post_screen" />
 
 </navigation>

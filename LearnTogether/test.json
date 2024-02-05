@@ -1,0 +1,84 @@
+{
+  "ISBN:978-0-07-184987-6": {
+    "bib_key": "ISBN:978-0-07-184987-6",
+    "info_url": "https://openlibrary.org/books/OL28555981M/PHP",
+    "preview": "borrow",
+    "preview_url": "https://archive.org/details/php20lessonstosu0000nixo",
+    "thumbnail_url": "https://covers.openlibrary.org/b/id/12724333-S.jpg",
+    "details": {
+      "publishers": [
+        "McGraw-Hill Education"
+      ],
+      "subtitle": "20 Lessons to Successful Web Development",
+      "source_records": [
+        "bwb:9780071849876",
+        "ia:php20lessonstosu0000nixo",
+        "promise:bwb_daily_pallets_2021-08-18",
+        "marc:marc_nuls/NULS_PHC_180925.mrc:233050284:1102"
+      ],
+      "title": "PHP",
+      "number_of_pages": 272,
+      "languages": [
+        {
+          "key": "/languages/eng"
+        }
+      ],
+      "full_title": "PHP 20 Lessons to Successful Web Development",
+      "publish_date": "2015",
+      "key": "/books/OL28555981M",
+      "authors": [
+        {
+          "key": "/authors/OL3561997A",
+          "name": "Robin Nixon"
+        }
+      ],
+      "works": [
+        {
+          "key": "/works/OL21095910W"
+        }
+      ],
+      "type": {
+        "key": "/type/edition"
+      },
+      "subjects": [
+        "Php (computer program language)",
+        "Internet programming",
+        "Web site development"
+      ],
+      "covers": [
+        12724333
+      ],
+      "identifiers": {},
+      "ocaid": "php20lessonstosu0000nixo",
+      "isbn_13": [
+        "9780071849876"
+      ],
+      "lccn": [
+        "2014045720"
+      ],
+      "oclc_numbers": [
+        "914166455",
+        "881449751"
+      ],
+      "classifications": {},
+      "lc_classifications": [
+        "QA76.73.P224.N5935",
+        "QA76.73.P224",
+        "QA76.73.P224 N5935 2015"
+      ],
+      "local_id": [
+        "urn:bwbsku:P7-BUV-921"
+      ],
+      "latest_revision": 5,
+      "revision": 5,
+      "created": {
+        "type": "/type/datetime",
+        "value": "2020-08-04T12:24:58.388009"
+      },
+      "last_modified": {
+        "type": "/type/datetime",
+        "value": "2023-03-08T04:16:04.158072"
+      }
+    }
+  }
+}

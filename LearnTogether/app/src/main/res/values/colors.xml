@@ -63,4 +63,5 @@
     <color name="md_theme_dark_scrim">#000000</color>
 
     <color name="card_backgrounds">#EDEFFF</color>
+    <color name="success_green_background">#a6ffbe</color>
 </resources>
