@@ -64,7 +64,8 @@ public class MainActivity extends AppCompatActivity {
                 R.id.planner_fragment,
                 R.id.tutorial_fragment,
                 R.id.communities_fragment,
-                R.id.profile_fragment
+                R.id.profile_fragment,
+                R.id.loginFragment
         )
                 .setOpenableLayout(binding.drawerLayout)
                 .build();
@@ -83,10 +84,13 @@ public class MainActivity extends AppCompatActivity {
                 navController.navigate(R.id.meetupsFragment);
             } else if (item.getItemId() == R.id.library) {
                 navController.navigate(R.id.libraryFragment);
+            } else if(item.getItemId()==R.id.about){
+                navController.navigate(R.id.aboutFragment);
+                binding.drawerLayout.closeDrawers();
+                return true;
             }
             return false;
         });
-
 
         botNavView = binding.navView;
 
@@ -98,6 +102,9 @@ public class MainActivity extends AppCompatActivity {
             int id = navDestination.getId();
             if (id == R.id.loginFragment || id == R.id.registerFragment) {
                 Objects.requireNonNull(getSupportActionBar()).hide();
+                binding.navView.setVisibility(View.GONE);
+            } else if(id == R.id.aboutFragment){
+                Objects.requireNonNull(getSupportActionBar()).show();
                 binding.navView.setVisibility(View.GONE);
             } else {
                 Objects.requireNonNull(getSupportActionBar()).show();

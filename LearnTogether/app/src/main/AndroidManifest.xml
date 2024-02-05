@@ -5,12 +5,15 @@
     <uses-feature
         android:name="android.hardware.camera"
         android:required="false" />
-
     <uses-permission android:name="android.permission.CAMERA" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_BACKGROUND_LOCATION" />
     <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
 
     <application
         android:name=".App"
@@ -49,6 +52,7 @@
             android:value="face" />
 
         <activity
+            android:windowSoftInputMode="adjustPan"
             android:name=".MainActivity"
             android:exported="false"
             android:label="@string/title_activity_main" />

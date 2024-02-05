@@ -14,20 +14,21 @@
     <fragment
         android:id="@+id/planner_fragment"
         android:name="com.sp.learntogether.ui.planner.PlannerFragment"
-        android:label="@string/title_planner"
-        tools:layout="@layout/fragment_planner" />
+        android:label="Study Buddy"
+        tools:layout="@layout/fragment_planner" >
+    </fragment>
 
     <fragment
         android:id="@+id/communities_fragment"
         android:name="com.sp.learntogether.ui.communities.CommunitiesFragment"
-        android:label="@string/title_communities"
-        tools:layout="@layout/fragment_communities">
-
+        android:label="Forums"
+        tools:layout="@layout/fragment_communities" >
         <action
-            android:id="@+id/action_communities_fragment_to_profile_fragment"
-            app:destination="@id/profile_fragment" >
-
-        </action>
+            android:id="@+id/action_communities_fragment_to_groupChats2"
+            app:destination="@id/forumPosts" />
+        <action
+            android:id="@+id/action_communities_fragment_to_addGCFragment"
+            app:destination="@id/addPostFragment" />
     </fragment>
     <fragment
         android:id="@+id/loginFragment"
@@ -120,5 +121,32 @@
         <argument android:name="meetup" app:argType="com.sp.learntogether.models.Meetup"/>
     </fragment>
 
+    <fragment
+        android:id="@+id/forumPosts"
+        android:name="com.sp.learntogether.ui.communities.forumPosts"
+        android:label="Forums"
+        tools:layout="@layout/fragment_forum_posts" >
+        <argument
+            android:name="communityDestination"
+            app:argType="string" />
+        <action
+            android:id="@+id/action_forumPosts_to_postScreen"
+            app:destination="@id/postScreen" />
+    </fragment>
+    <fragment
+        android:id="@+id/aboutFragment"
+        android:name="com.sp.learntogether.aboutFragment"
+        android:label="About the app"
+        tools:layout="@layout/fragment_about" />
+    <fragment
+        android:id="@+id/addPostFragment"
+        android:name="com.sp.learntogether.addPostFragment"
+        android:label="Make a Post!"
+        tools:layout="@layout/fragment_add_forum_post" />
+    <fragment
+        android:id="@+id/postScreen"
+        android:name="com.sp.learntogether.ui.communities.postScreen"
+        android:label="Forums"
+        tools:layout="@layout/fragment_post_screen" />
 
 </navigation>

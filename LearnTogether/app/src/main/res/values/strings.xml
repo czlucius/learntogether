@@ -100,4 +100,41 @@
     <string name="your_location">Your location</string>
     <string name="check_info">Check info</string>
 
+    <string-array name="communities_array">
+        <item>Mathematics</item>
+        <item>Science</item>
+        <item>English</item>
+        <item>Social Studies</item>
+        <item>Piano</item>
+        <item>History</item>
+        <item>Geography</item>
+        <item>Planting</item>
+        <item>Violin</item>
+    </string-array>
+    <!-- TIMER ACTIVITY -->
+    <string name="task_swipe">Tasks</string>
+    <string name="timer_default">00</string>
+    <string name="timer_colon">:</string>
+
+    <string name="button_start">Start</string>
+    <string name="button_pause">Pause</string>
+    <string name="button_reset">Reset</string>
+
+    <string name="switch_text">Completed Tasks</string>
+
+    <!-- TASK DIALOG -->
+    <string name="dialog_title">Task title...</string>
+    <string name="dialog_description">Task description...</string>
+    <string name="group_prompt">Group</string>
+    <string name="dialog_button">Confirm</string>
+
+    <!-- SHARED PREFERENCES KEY -->
+    <string name="timer_prefs">timerPrefs</string>
+    <string name="save_time_prefs">saveTimePrefs</string>
+
+    <!-- NOTIFICATION STRINGS -->
+    <string name="new_notification">Create a new notification</string>
+
+    <string name="channel_name">Timer End Channel</string>
+    <string name="channel_description">This is the channel for the end of the timer</string>
 </resources>

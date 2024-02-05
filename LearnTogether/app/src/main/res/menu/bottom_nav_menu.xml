@@ -14,7 +14,7 @@
     <item
         android:id="@+id/communities_fragment"
         android:icon="@drawable/community"
-        android:title="@string/title_communities" />
+        android:title="Forums" />
 
     <item
         android:id="@id/profile_fragment"

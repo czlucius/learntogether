@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:background="#EDEFFF"
+    android:backgroundTint="#EDEFFF"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".addStudyPlace">
+
+    <ImageView
+        android:id="@+id/spImg"
+        android:layout_width="250sp"
+        android:layout_height="130sp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="20sp"
+        android:visibility="invisible" />
+
+    <ImageButton
+        android:id="@+id/addSPpic"
+        android:layout_width="250sp"
+        android:layout_height="130sp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="20sp"
+        android:background="#EDEFFF"
+        android:src="@drawable/add_photo" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="150sp"
+        android:orientation="vertical">
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="wrap_content"
+            android:layout_height="58dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="25sp"
+            android:elevation="8sp"
+            app:cardCornerRadius="10sp"
+            app:cardElevation="15sp"
+            app:cardMaxElevation="20sp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:id="@+id/gassg"
+                    android:layout_width="50sp"
+                    android:layout_height="40sp"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="10sp"
+                    android:layout_marginRight="20sp"
+                    android:layout_weight="1"
+                    android:src="@drawable/name" />
+
+                <EditText
+                    android:id="@+id/addSPname"
+                    android:layout_width="250sp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginRight="20sp"
+                    android:background="@android:color/transparent"
+                    android:ems="10"
+                    android:hint="Enter location name!"
+                    android:inputType="text" />
+            </LinearLayout>
+
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="wrap_content"
+            android:layout_height="58dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="30sp"
+            android:elevation="8sp"
+            app:cardCornerRadius="10sp"
+            app:cardElevation="15sp"
+            app:cardMaxElevation="20sp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:id="@+id/descSP"
+                    android:layout_width="50sp"
+                    android:layout_height="40sp"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="10sp"
+                    android:layout_marginRight="20sp"
+                    android:layout_weight="1"
+                    android:src="@drawable/descriptionicon" />
+
+                <EditText
+                    android:id="@+id/addSPdesc"
+                    android:layout_width="250sp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginRight="20sp"
+                    android:background="@android:color/transparent"
+                    android:ems="10"
+                    android:hint="What is the location like?"
+                    android:inputType="text" />
+            </LinearLayout>
+
+        </androidx.cardview.widget.CardView>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30sp"
+            android:orientation="horizontal">
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="wrap_content"
+                android:layout_height="58dp"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginLeft="30sp"
+                android:layout_marginTop="30sp"
+                android:elevation="8sp"
+                app:cardCornerRadius="10sp"
+                app:cardElevation="15sp"
+                app:cardMaxElevation="20sp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:id="@+id/locationSP"
+                        android:layout_width="50sp"
+                        android:layout_height="40sp"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginLeft="10sp"
+                        android:layout_marginRight="20sp"
+                        android:layout_weight="1"
+                        android:src="@drawable/baseline_add_location_24" />
+
+                    <TextView
+                        android:id="@+id/addSPloc"
+                        android:layout_width="150sp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginRight="20sp"
+                        android:background="@android:color/transparent"
+                        android:ems="10"
+                        android:hint="Location displayed here!"
+                        android:inputType="text" />
+
+                </LinearLayout>
+
+            </androidx.cardview.widget.CardView>
+
+            <Button
+                android:id="@+id/getSPgps"
+                android:layout_width="wrap_content"
+                android:layout_height="62dp"
+                android:layout_marginLeft="10sp"
+                android:layout_marginRight="31sp"
+                android:layout_weight="1"
+                android:drawablePadding="0sp"
+                android:elevation="8sp"
+                android:padding="0sp"
+                android:paddingHorizontal="0sp"
+                android:paddingVertical="0sp"
+                android:text="Get Location"
+                android:textSize="10sp"
+                app:cornerRadius="10sp"
+                app:iconPadding="0sp" />
+
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/saveAddSP"
+            android:layout_width="350sp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:text="Save!"
+            app:cornerRadius="10sp" />
+
+    </LinearLayout>
+
+</FrameLayout>
