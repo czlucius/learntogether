@@ -16,6 +16,7 @@ import android.provider.Settings
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
 import androidx.core.app.ActivityCompat
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.navArgs
@@ -126,6 +127,18 @@ class MeetupMapsFragment : Fragment() {
         accelerometer = sensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER)!!
         magnetField = sensorManager.getDefaultSensor(Sensor.TYPE_MAGNETIC_FIELD)!!
 
+
+
+        ref.child("nearby").addValueEventListener(object : ValueEventListener {
+            override fun onDataChange(snapshot: DataSnapshot) {
+                val current = snapshot.getValue<Boolean>()
+                view.findViewById<TextView>(R.id.desc_geofence)
+                    .setText(if (current == true) "Initiator has entered location" else "Initiator has left location")
+            }
+            override fun onCancelled(error: DatabaseError) {
+
+            }
+        })
 
 
     }
