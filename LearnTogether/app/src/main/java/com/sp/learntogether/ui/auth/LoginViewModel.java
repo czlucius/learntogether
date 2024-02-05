@@ -7,6 +7,8 @@ import androidx.lifecycle.ViewModel;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
+import java.util.Objects;
+
 
 enum LoginState {
     LOGGED_IN, NOT_VERIFIED, VERIFY_SENT, NETWORK_ERROR, AUTH_FAILED
@@ -37,6 +39,9 @@ public class LoginViewModel extends ViewModel {
                         } else {
                             state.setValue(LoginState.NOT_VERIFIED);
                         }
+                    } else {
+                        if (task.getException() != null) {task.getException().printStackTrace();}
+                        state.setValue(LoginState.AUTH_FAILED);
                     }
                 });
     }
