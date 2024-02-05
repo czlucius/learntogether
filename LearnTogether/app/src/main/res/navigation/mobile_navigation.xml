@@ -21,7 +21,14 @@
         android:id="@+id/communities_fragment"
         android:name="com.sp.learntogether.ui.communities.CommunitiesFragment"
         android:label="@string/title_communities"
-        tools:layout="@layout/fragment_communities" />
+        tools:layout="@layout/fragment_communities">
+
+        <action
+            android:id="@+id/action_communities_fragment_to_profile_fragment"
+            app:destination="@id/profile_fragment" >
+
+        </action>
+    </fragment>
     <fragment
         android:id="@+id/loginFragment"
         android:name="com.sp.learntogether.ui.auth.LoginFragment"
@@ -39,7 +46,28 @@
         android:id="@+id/profile_fragment"
         android:name="com.sp.learntogether.ui.profile.ProfileFragment"
         android:label="@string/title_profile"
-        tools:layout="@layout/fragment_profile"/>
+        tools:layout="@layout/fragment_profile">
+        <argument
+            android:name="profile"
+            android:defaultValue="@null"
+            app:argType="com.sp.learntogether.models.Profile"
+            app:nullable="true"/>
+
+        <argument
+            android:name="is_other"
+            android:defaultValue="false"
+            app:argType="boolean"
+            app:nullable="false"/>
+
+        <argument
+            android:name="is_friend"
+            android:defaultValue="false"
+            app:argType="boolean"
+            app:nullable="false"/>
+        <action
+            android:id="@+id/action_profile_fragment_to_loginFragment"
+            app:destination="@id/loginFragment" />
+    </fragment>
     <fragment
         android:id="@+id/registerFragment"
         android:name="com.sp.learntogether.ui.auth.RegisterFragment"
@@ -50,7 +78,6 @@
             app:destination="@id/loginFragment" />
     </fragment>
     <fragment
-<<<<<<< HEAD
         android:id="@+id/libraryFragment"
         android:name="com.sp.learntogether.ui.library.LibraryFragment"
         android:label="@string/library"
@@ -75,6 +102,23 @@
         android:name="com.sp.learntogether.ui.ai.GenerativeChatFragment"
         android:label="@string/chat_with_learnbot"
         tools:layout="@layout/fragment_generative_chat" />
+    <fragment
+        android:id="@+id/meetupsFragment"
+        android:name="com.sp.learntogether.ui.MeetupsFragment"
+        android:label="fragment_meetups"
+        tools:layout="@layout/fragment_meetups" >
+        <action
+            android:id="@+id/action_meetupsFragment_to_meetupMapsFragment"
+            app:destination="@id/meetupMapsFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/meetupMapsFragment"
+        android:name="com.sp.learntogether.MeetupMapsFragment"
+        android:label="fragment_meetup_maps"
+        tools:layout="@layout/fragment_meetup_maps" >
+        <argument android:name="location" app:argType="com.sp.learntogether.objects.Location" app:nullable="true"/>
+        <argument android:name="meetup" app:argType="com.sp.learntogether.models.Meetup"/>
+    </fragment>
 
 
 </navigation>

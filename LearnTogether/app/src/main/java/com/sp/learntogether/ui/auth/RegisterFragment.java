@@ -10,6 +10,8 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.navigation.NavController;
+import androidx.navigation.fragment.NavHostFragment;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -19,6 +21,8 @@ import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.google.android.material.snackbar.Snackbar;
 import com.sp.learntogether.R;
 import com.sp.learntogether.databinding.FragmentRegisterBinding;
+
+import java.util.Objects;
 
 public class RegisterFragment extends Fragment {
 
@@ -42,6 +46,7 @@ public class RegisterFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        NavController navController = NavHostFragment.findNavController(this);
         vm.getImageUri().observe(getViewLifecycleOwner(), uri -> {
             if (uri == null) {
                 binding.profilePicRegister.setImageResource(R.drawable.baseline_add_24);
@@ -51,7 +56,7 @@ public class RegisterFragment extends Fragment {
         });
 
         vm.getDetectedFaces().observe(getViewLifecycleOwner(), faces -> {
-            if (faces == null ) {
+            if (faces == null) {
                 binding.hasFaceIndicator.setVisibility(View.GONE);
                 return;
             }
@@ -66,6 +71,28 @@ public class RegisterFragment extends Fragment {
             }
         });
 
+        vm.getStatus().observe(getViewLifecycleOwner(), status -> {
+            if (status == null) {
+                return;
+            }
+            if (status) {
+                Snackbar.make(view, "Registration successful! Please check your email for a verification link.", Snackbar.LENGTH_LONG).show();
+
+                navController.navigate(R.id.action_registerFragment_to_loginFragment);
+            } else {
+                Snackbar.make(view, "Registration unsuccessful!", Snackbar.LENGTH_LONG).show();
+                vm.clearStatus();
+            }
+        });
+
+        binding.signupBtnRegister.setOnClickListener(v -> {
+            String username = binding.usernameInputRegister.getEditText().getText().toString();
+            String password = binding.passwordInputRegister.getEditText().getText().toString();
+            String email = binding.emailInputRegister.getEditText().getText().toString();
+            String name = binding.nameInputRegister.getEditText().getText().toString();
+
+            vm.signup(username, email, password, name);
+        });
 
 
 

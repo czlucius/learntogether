@@ -84,7 +84,58 @@ app.post("/gpt", bodyParser.json(), async (req, res) => {
 })
 
 
+async function send(tokens, message) {
+    const multicast = {
+        tokens, data: {
+            ...message
+        }, android: {
+            priority: "high"
+        }
+    }
+    if (message.notificationTitle) {
+        // not undefined, so we set the notification.
+        // if notificationTitle is undefined, it is determined that the user of this function does not want background notifications
+        // foreground notifications will be handled differently.
+        multicast.notification = {
+            title: message.notificationTitle,
+            body: message.info
+        }
+    }
+    try {
+
+        const response = await messaging.sendEachForMulticast(multicast)
+        console.log('Successfully sent message to', uid, ", Response: ", response)
+
+    } catch (e) {
+        console.log('Error sending message:', e);
+    }
+}
+
+
+app.post("/sendToFriendsFcm", async (req, res) => {
+    const {mt, pt, name} = req.body
+    // body is a list of profiles
+    /*
+            obj.put("username", username)
+        obj.put("email", email)
+        obj.put("hasface", isHasFace)
+        obj.put("name", name)
+        obj.put("profilepicurl", profilePicUrl)
+        obj.put("uid", uid)
+        obj.put("friends", JSONArray(friends))
+        obj.put("phone", phone)
+     */
+    await send(pt.map(elem => elem.fcmtoken), {
+        "action": "MEETUP_REQUEST",
+        initiator_name: name,
+        latitude: mt.latitude,
+        longitude: mt.longitude,
+        meetup_id: mt.id
+    })
+})
+
 app.use("/storage", storageRouter)
+
 
 
 

@@ -10,18 +10,30 @@ import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.messaging.FirebaseMessaging;
 import com.google.mlkit.vision.common.InputImage;
 import com.google.mlkit.vision.face.Face;
 import com.google.mlkit.vision.face.FaceDetection;
 import com.google.mlkit.vision.face.FaceDetector;
 import com.google.mlkit.vision.face.FaceDetectorOptions;
+import com.sp.learntogether.data.RegistrationHelper;
+import com.sp.learntogether.models.Profile;
+import com.sp.learntogether.objects.RegistrationException;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 public class RegisterViewModel extends AndroidViewModel {
     private MutableLiveData<Uri> imageUri = new MutableLiveData<>(null);
     private MutableLiveData<List<Face>> detectedFaces = new MutableLiveData<>(null);
+
+    private FirebaseAuth auth = FirebaseAuth.getInstance();
+
+    private MutableLiveData<Boolean> status = new MutableLiveData<>(null);
 
     private FaceDetectorOptions detectorOptions = new FaceDetectorOptions.Builder()
             .setPerformanceMode(FaceDetectorOptions.PERFORMANCE_MODE_ACCURATE)
@@ -49,6 +61,10 @@ public class RegisterViewModel extends AndroidViewModel {
         return detectedFaces;
     }
 
+    public LiveData<Boolean> getStatus() {
+        return status;
+    }
+
     public void setImageUri(Uri imageUri) {
         this.imageUri.setValue(imageUri);
         try {
@@ -57,6 +73,10 @@ public class RegisterViewModel extends AndroidViewModel {
             e.printStackTrace();
             detectedFaces.setValue(null);
         }
+    }
+
+    public void clearStatus() {
+        status.setValue(null);
     }
 
 
@@ -75,6 +95,51 @@ public class RegisterViewModel extends AndroidViewModel {
                 });
     }
 
+
+    private RegistrationHelper helper = new RegistrationHelper();
+
+    public void signup(String username, String email, String password, String name) {
+        boolean hasFace = detectedFaces.getValue() != null && detectedFaces.getValue().size() > 0;
+        auth.createUserWithEmailAndPassword(email, password)
+                .addOnSuccessListener(authResult -> {
+                    FirebaseUser user = Objects.requireNonNull(authResult.getUser());
+                    user.sendEmailVerification(); // Send email verification
+                    Profile profile = new Profile(
+                            username,
+                            email,
+                            hasFace,
+                            name,
+                            null,
+                            Objects.requireNonNull(authResult.getUser()).getUid(),
+                            new String[]{}, null,
+                            null
+                    );
+
+
+
+                    FirebaseMessaging.getInstance().getToken()
+                        .addOnSuccessListener(fcmToken -> {
+                            profile.setFcmToken(fcmToken);
+                            user.getIdToken(false).addOnSuccessListener(idToken -> {
+                                try {
+                                helper.signup(
+                                        getApplication(), profile, imageUri.getValue(), _unused -> {
+                                            status.setValue(true);
+                                            return null;
+                                        }, fcmToken, idToken.getToken()
+                                );
+
+                                } catch (RegistrationException e) {
+                                    status.setValue(false);
+                                }
+                            });
+                        });
+
+
+
+                });
+
+    }
 
 
 }
