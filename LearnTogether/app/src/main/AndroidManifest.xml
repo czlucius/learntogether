@@ -44,12 +44,6 @@
         <service
             android:name=".GLocService"
             android:exported="false" />
-
-        <activity
-            android:name=".ui.MeetupMapsActivity"
-            android:exported="false"
-            android:label="@string/title_activity_meetup_maps" />
-
         <meta-data
             android:name="com.google.mlkit.vision.DEPENDENCIES"
             android:value="face" />
