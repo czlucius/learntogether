@@ -67,9 +67,15 @@ public class ProfileFragment extends Fragment {
         }
         NavController nc = NavHostFragment.findNavController(this);
         binding.logout.setOnClickListener(v -> {
-            trackingDao.clear();
-            auth.signOut();
-            nc.navigate(R.id.action_profile_fragment_to_loginFragment);
+            new Thread( () -> {
+                // Clear the tracking dao in a new thread
+                trackingDao.clear();
+                requireActivity().runOnUiThread(() -> {
+                    
+                    auth.signOut();
+                    nc.navigate(R.id.action_profile_fragment_to_loginFragment);
+                });
+            }).start();
         });
     }
     private void useProfile(Profile profile) {
