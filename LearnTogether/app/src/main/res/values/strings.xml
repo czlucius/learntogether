@@ -22,4 +22,119 @@
     <string name="email_password_cannot_be_empty">Email/password cannot be empty!</string>
     <string name="network_error">Network error!</string>
     <string name="auth_failure">Authentication failed</string>
+    <string name="library">Library</string>
+    <string name="isbn">ISBN</string>
+    <string name="share">Share</string>
+    <string name="scan_book_isbn_code">Scan book ISBN code</string>
+    <string name="scan_your_books_here">Scan your books here.</string>
+    <string name="isbn_search_desc">LearnTogether will search up the book via an ISBN lookup.</string>
+    <string name="enter_isbn">Enter ISBN</string>
+    <string name="permanent_denial_promt">Camera permission denied. Please enter the ISBN code manually or enable it in system settings.</string>
+    <string name="grant">Grant</string>
+    <string name="camera_book_rationale">Camera permissions are required to scan the book via the device camera.</string>
+    <string name="permissions_required">Permissions required</string>
+    <string name="failure_to_start_camera">Failure to start camera.</string>
+    <string name="save">Save</string>
+    <string name="authors">Authors</string>
+    <string name="isbn_template">ISBN: %1$s</string>
+    <string name="book_share_template">Check out this book I saved on LearnTogether: %1$s - %2$s!\n%3$s</string>
+    <string name="meetup_share_template">Meetup at %1$s on %2$s. Download LearnTogether now!</string>
+    <string name="share_with_your_friends">Share %1$s with your friends!</string>
+    <string name="name">Name</string>
+    <string name="username_hint">Username (e.g. @johndoe)</string>
+    <string name="signup_for_learntogether_today">Signup for\nLearnTogether today!</string>
+    <string name="sign_up">Sign Up</string>
+    <string name="confirm_password">Confirm Password</string>
+    <string name="remove_profile_picture">Remove profile picture?</string>
+    <string name="clear_pfp_notice">This will clear the profile picture you have set.</string>
+    <string name="confirm">Confirm</string>
+    <string name="cancel">Cancel</string>
+    <string name="face_detected">Your picture has a face!</string>
+    <string name="no_face">No face!</string>
+    <string name="add_face_notice">We encourage you to add a picture with your face for better personal interaction</string>
+
+    <string name="question_box_hint">Type/paste your questions here...</string>
+    <string name="ask_learnbot">Ask LearnBot</string>
+    <string name="profile_picture">Profile picture</string>
+    <string name="learnbot">LearnBot</string>
+    <string name="you">You</string>
+    <string name="parsing_errors">Parsing errors</string>
+    <string name="chat_with_learnbot">Chat with LearnBot</string>
+    <string name="json_parsing_failure">JSON parsing failure</string>
+    <string name="schedule_meetup">Schedule meetup</string>
+    <string name="schedule_a_meetup">Schedule a meetup</string>
+    <string name="date_time">Date/time</string>
+    <string name="duration">Duration</string>
+    <string name="date">Date</string>
+    <string name="time">Time</string>
+    <string name="participants">Participants</string>
+    <string name="add_participant_to_meetup">Add participant to meetup</string>
+    <string name="your_location_will_be_shared">Your location will be shared.</string>
+    <string name="schedule">Schedule</string>
+    <string name="duration_hours">Duration (hours)</string>
+    <string name="duration_format">%1$d hours</string>
+    <string name="please_fill_in_all_fields">Please fill in all fields.</string>
+    <string name="invite_participants">Invite participants</string>
+    <string name="meetup_request">Meetup request</string>
+    <string name="accept">Accept</string>
+    <string name="deny">Deny</string>
+    <string name="accepted_meetup_request">Accepted meetup request</string>
+    <string name="meetups">Meetups</string>
+    <string name="meetups_desc">Get notified when a friend organises a meetups</string>
+    <string name="add_friend">Add friend</string>
+    <string name="added_as_friend">Added as friend</string>
+    <string name="logout">Logout</string>
+    <string name="lat_lng_template">%1$d, %2$d</string>
+    <string name="share_upcoming_meetup">Share upcoming meetup</string>
+    <string name="navigate">Navigate</string>
+    <string name="locate">Locate</string>
+    <string name="add">Add</string>
+    <string name="error_adding_book">Error adding book!</string>
+    <string name="delete">Delete</string>
+    <string name="title_activity_meetup_maps">MeetupMapsActivity</string>
+    <string name="update_your_location_for_meetups">Update your location for meetups</string>
+    <string name="location">Location</string>
+    <string name="location_meetup_rationale">Location permissions are needed for live location updates for the meetups you organise.\nEnable location permissions all the time in Settings.</string>
+    <string name="loc_permanent_denial_promt">Location permission denied permanently. Please enable it in Settings.</string>
+    <string name="position_of_initiator">Position of initiator</string>
+    <string name="your_location">Your location</string>
+    <string name="check_info">Check info</string>
+
+    <string-array name="communities_array">
+        <item>Mathematics</item>
+        <item>Science</item>
+        <item>English</item>
+        <item>Social Studies</item>
+        <item>Piano</item>
+        <item>History</item>
+        <item>Geography</item>
+        <item>Planting</item>
+        <item>Violin</item>
+    </string-array>
+    <!-- TIMER ACTIVITY -->
+    <string name="task_swipe">Tasks</string>
+    <string name="timer_default">00</string>
+    <string name="timer_colon">:</string>
+
+    <string name="button_start">Start</string>
+    <string name="button_pause">Pause</string>
+    <string name="button_reset">Reset</string>
+
+    <string name="switch_text">Completed Tasks</string>
+
+    <!-- TASK DIALOG -->
+    <string name="dialog_title">Task title...</string>
+    <string name="dialog_description">Task description...</string>
+    <string name="group_prompt">Group</string>
+    <string name="dialog_button">Confirm</string>
+
+    <!-- SHARED PREFERENCES KEY -->
+    <string name="timer_prefs">timerPrefs</string>
+    <string name="save_time_prefs">saveTimePrefs</string>
+
+    <!-- NOTIFICATION STRINGS -->
+    <string name="new_notification">Create a new notification</string>
+
+    <string name="channel_name">Timer End Channel</string>
+    <string name="channel_description">This is the channel for the end of the timer</string>
 </resources>
